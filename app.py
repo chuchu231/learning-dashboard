@@ -15,11 +15,11 @@ import io
 
 
 # ---------------------- Gọi API ----------------------
-BASE_URL = "http://22bf53f743ec.ngrok-free.app"
+BASE_URL = "https://22bf53f743ec.ngrok-free.app"
 
 def load_class_list():
     try:
-        response = requests.get(f"{BASE_URL}/api/load_class_list")
+        response = requests.get(f"{BASE_URL}/load_class_list")
         data = response.json()
         if data["status"] == "success":
             return data["data"]
@@ -1075,18 +1075,23 @@ elif selected == "Data Management":
 
         if st.button("⬆️ Import All"):
             with st.spinner("⏳ Đang import dữ liệu..."):
-                files = [("files", (f.name, f.read(), f.type)) for f in uploaded_files]
-
                 try:
-                    res = requests.post(f"{BASE_URL}/import-files", files=files)
-                    if res.ok:
-                        st.success(res.json()["message"])
-                        # Reset uploader
+                    # Chuẩn bị file để gửi
+                    files = [
+                        ("files", (f.name, f.read(), f"type=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+                        for f in uploaded_files
+                    ]
+
+                    response = requests.post(f"{BASE_URL}/api/import-files", files=files)
+
+                    if response.status_code == 200:
+                        st.success(response.json()["message"])
+                        # Reset uploader sau khi import thành công
                         st.session_state.uploader_key = f"multi_file_uploader_{uuid.uuid4()}"
                         time.sleep(1.5)
                         experimental_rerun()
                     else:
-                        st.error(res.json().get("message", "❌ Import thất bại."))
+                        st.error(response.json().get("message", "❌ Import thất bại."))
                 except Exception as e:
                     st.error(f"❌ Không thể kết nối API: {e}")
 
