@@ -15,7 +15,7 @@ import io
 
 
 # ---------------------- Gọi API ----------------------
-BASE_URL = "https://2a6024378dc0.ngrok-free.app"
+BASE_URL = "https://2a6024378dc0.ngrok-free.app/api"
 
 def load_class_list():
     try:
@@ -1078,7 +1078,7 @@ elif selected == "Data Management":
                 files = [("files", (f.name, f.read(), f.type)) for f in uploaded_files]
 
                 try:
-                    res = requests.post(f"{BASE_URL}api/import-files", files=files)
+                    res = requests.post(f"{BASE_URL}/import-files", files=files)
                     if res.ok:
                         st.success(res.json()["message"])
                         # Reset uploader
