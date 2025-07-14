@@ -13,7 +13,6 @@ from import_handler import import_file
 from streamlit import experimental_rerun
 import zipfile
 import io
-from api import fetch_class_statistics
 
 # Set page config
 st.set_page_config("Learning Analytics", layout="wide", page_icon="📊")
