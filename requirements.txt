@@ -4,3 +4,4 @@ pandas==1.5.2
 requests
 plotly
 scipy
+pyodbc
