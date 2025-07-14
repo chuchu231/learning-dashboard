@@ -1,6 +1,6 @@
-streamlit
-streamlit-menu
-pandas
+streamlit==1.46.1
+streamlit-menu==1.0.9
+pandas==1.5.2
 requests
 plotly
 scipy
