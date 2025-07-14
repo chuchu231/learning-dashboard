@@ -1,8 +1,8 @@
 streamlit
 streamlit-menu
-pandas
+pandas>=2.0.0
+dask
 requests
 plotly
 scipy
 pyodbc
-dask
