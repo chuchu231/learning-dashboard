@@ -1,6 +1,6 @@
 streamlit
 streamlit-menu
-pandas>=2.0.0
+pandas==1.5.2
 dask
 requests
 plotly
