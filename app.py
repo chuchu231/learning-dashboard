@@ -17,7 +17,7 @@ import io
 st.set_page_config("Learning Analytics", layout="wide", page_icon="📊")
 
 # ---------------------- Gọi API ----------------------
-BASE_URL = "https://22bf53f743ec.ngrok-free.app/api"
+BASE_URL = "https://2a6024378dc0.ngrok-free.app/api"
 
 def fetch_class_statistics(class_id):
     try:
@@ -52,7 +52,6 @@ import streamlit as st
 import streamlit_menu as menu
 import uuid
 import pandas as pd
-from pyadomd import Pyadomd
 import plotly.express as px
 import plotly.graph_objects as go
 from scipy.stats import pearsonr
@@ -287,25 +286,6 @@ def load_class_list():
         df = pd.read_sql("SELECT CL.ClassID + ' - ' + CO.CourseName AS Class FROM dbo.DimClass CL join dbo.DimCourse CO on CL.CourseSK = CO.CourseSK", conn_sql) 
         conn_sql.close() 
         return df["Class"].dropna().tolist()
-def run_query(query, columns):
-        try:
-            with Pyadomd(conn_str) as conn:
-                with conn.cursor().execute(query) as cur:
-                    data = cur.fetchall()
-                    return pd.DataFrame(data, columns=columns) if data else pd.DataFrame()
-        except Exception as e:
-            st.markdown(f"""
-            <div class='info-box'>
-                <b>Error:</b> {str(e)}<br>
-                <b>Troubleshooting tips:</b><br>
-                - Verify SSAS server is running.<br>
-                - Ensure database name is correct.<br>
-                - Check user permissions.<br>
-                - Test MDX in SSMS.
-            </div>
-            """, unsafe_allow_html=True)
-            return pd.DataFrame()
-
 
 if selected == "Overview":
     st.markdown("""
@@ -445,7 +425,7 @@ elif selected == "Learning Performance":
         )
         st.plotly_chart(fig, use_container_width=True)
         st.markdown(f"<div class='doughnut-caption'>{title}</div>", unsafe_allow_html=True)
-        
+
     results = fetch_class_statistics(selected_class)
 
     if "error" in results:
