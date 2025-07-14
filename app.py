@@ -15,11 +15,11 @@ import io
 
 
 # ---------------------- Gọi API ----------------------
-BASE_URL = "http://22bf53f743ec.ngrok-free.app/api"
+BASE_URL = "http://22bf53f743ec.ngrok-free.app"
 
 def load_class_list():
     try:
-        response = requests.get(f"{BASE_URL}/load_class_list")
+        response = requests.get(f"{BASE_URL}/api/load_class_list")
         data = response.json()
         if data["status"] == "success":
             return data["data"]
