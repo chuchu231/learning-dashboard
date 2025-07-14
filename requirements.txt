@@ -1,0 +1,7 @@
+streamlit
+streamlit-menu
+pandas
+requests
+plotly
+scipy
+pyodbc
