@@ -14,7 +14,7 @@ import zipfile
 import io
 
 # Set page config
-# st.set_page_config("Learning Analytics", layout="wide", page_icon="📊")
+st.set_page_config("Learning Analytics", layout="wide", page_icon="📊")
 
 # ---------------------- Gọi API ----------------------
 BASE_URL = "https://2a6024378dc0.ngrok-free.app/api"
@@ -277,15 +277,18 @@ st.markdown(
     unsafe_allow_html=True
 )
 def load_class_list():
-        conn_sql = pyodbc.connect( 
-                "DRIVER={ODBC Driver 17 for SQL Server};"
-                "SERVER=LEETHUONG\\MSSQLSERVER2019;"
-                "DATABASE=THESIS_DDS;"
-                "Trusted_Connection=yes;"
-            )
-        df = pd.read_sql("SELECT CL.ClassID + ' - ' + CO.CourseName AS Class FROM dbo.DimClass CL join dbo.DimCourse CO on CL.CourseSK = CO.CourseSK", conn_sql) 
-        conn_sql.close() 
-        return df["Class"].dropna().tolist()
+    try:
+        response = requests.get("http://127.0.0.1:5000/load_class_list")
+        data = response.json()
+        if data["status"] == "success":
+            return data["data"]
+        else:
+            st.error(f"❌ Lỗi khi tải danh sách lớp: {data['message']}")
+            return []
+    except Exception as e:
+        st.error(f"❌ Lỗi kết nối API: {e}")
+        return []
+
 
 if selected == "Overview":
     st.markdown("""
