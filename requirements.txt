@@ -1,6 +1,6 @@
 streamlit
 streamlit-menu
-pandas>=2.0.0
+pandas
 requests
 plotly
 scipy
