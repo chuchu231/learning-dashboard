@@ -6,4 +6,3 @@ plotly
 scipy
 pyodbc
 pythonnet
-pyadomd
