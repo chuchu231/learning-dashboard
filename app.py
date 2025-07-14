@@ -19,7 +19,7 @@ BASE_URL = "https://2a6024378dc0.ngrok-free.app/api"
 
 def fetch_class_statistics(class_id):
     try:
-        res = requests.get("http://localhost:5000/api/statistics", params={"class_id": class_id})
+        res = requests.get("http://127.0.0.1:5000/api/statistics", params={"class_id": class_id})
         res.raise_for_status()
         return res.json()
     except Exception as e:
@@ -27,7 +27,7 @@ def fetch_class_statistics(class_id):
 
 def fetch_quiz_behavior(class_id):
     try:
-        url = "http://localhost:5000/api/quiz-behavior"
+        url = "http://127.0.0.1:5000/api/quiz-behavior"
         res = requests.get(url, params={"class_id": class_id})
         res.raise_for_status()
         return res.json()
@@ -36,7 +36,7 @@ def fetch_quiz_behavior(class_id):
         return None
 def fetch_student_performance(class_id):
     try:
-        url = "http://localhost:5000/api/student-performance"
+        url = "http://127.0.0.1:5000/api/student-performance"
         res = requests.get(url, params={"class_id": class_id})
         res.raise_for_status()
         return res.json()
@@ -61,10 +61,6 @@ import zipfile
 import io
 import time
 
-
-# Set page config
-st.set_page_config("Learning Analytics", layout="wide", page_icon="📊")
-conn_str = "Provider=MSOLAP;Data Source=LEETHUONG\\MSSQLSERVER2019;Catalog=cube_07062025;Integrated Security=SSPI"
 
 # CSS styles
 st.markdown("""
