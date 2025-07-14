@@ -13,8 +13,6 @@ from streamlit import experimental_rerun
 import zipfile
 import io
 
-# Set page config
-st.set_page_config("Learning Analytics", layout="wide", page_icon="📊")
 
 # ---------------------- Gọi API ----------------------
 BASE_URL = "https://2a6024378dc0.ngrok-free.app/api"
