@@ -17,7 +17,7 @@ import io
 st.set_page_config("Learning Analytics", layout="wide", page_icon="📊")
 
 # ---------------------- Gọi API ----------------------
-BASE_URL = "https://2a6024378dc0.ngrok-free.app/api"
+BASE_URL = "https://22bf53f743ec.ngrok-free.app/api"
 
 def fetch_class_statistics(class_id):
     try:
