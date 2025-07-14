@@ -19,7 +19,7 @@ from api import fetch_class_statistics
 st.set_page_config("Learning Analytics", layout="wide", page_icon="📊")
 
 # ---------------------- Gọi API ----------------------
-BASE_URL = "https://7f53a95340c0.ngrok-free.app/api"
+BASE_URL = "https://2a6024378dc0.ngrok-free.app/api"
 
 
 def get_api_data(endpoint, class_id):
