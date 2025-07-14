@@ -411,12 +411,12 @@ elif selected == "Learning Performance":
     if "error" in results:
         st.error(f"Lỗi khi gọi API: {results['error']}")
     else:
-        df_avg = results["avg_score"]
-        df_rates = results["performance_rates"]
-        df_ranks = results["ranking_distribution"]
-        df_dist = results["performance_distribution"]
-        df_scores = results["min_max_scores"]
-        df_pass_fail = results["pass_fail_rate"]
+        df_avg = pd.DataFrame(results["avg_score"])
+        df_rates = pd.DataFrame(results["performance_rates"])
+        df_ranks = pd.DataFrame(results["ranking_distribution"])
+        df_dist = pd.DataFrame(results["performance_distribution"])
+        df_scores = pd.DataFrame(results["min_max_scores"])
+        df_pass_fail = pd.DataFrame(results["pass_fail_rate"])
     # Layout
     # Phần chính: Average Score và Pass/Fail Rate
     col1, col2 = st.columns([1.5, 3])
