@@ -21,7 +21,7 @@ if not os.path.exists(dll_path):
 sys.path.append(os.path.dirname(dll_path))
 
 # Load DLL
-clr.AddReference(dll_path)
+clr.AddReference("Microsoft.AnalysisServices.AdomdClient")
 
 # Import từ namespace sau khi load DLL
 from Microsoft.AnalysisServices.AdomdClient import AdomdConnection, AdomdCommand
