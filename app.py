@@ -8,18 +8,31 @@ import plotly.express as px
 import plotly.graph_objects as go
 from scipy.stats import pearsonr
 import time
-import pyodbc
 from streamlit import experimental_rerun
 import zipfile
 import io
 
 
+
 # ---------------------- Gọi API ----------------------
-BASE_URL = "https://2a6024378dc0.ngrok-free.app/api"
+BASE_URL = "https://2a6024378dc0.ngrok-free.app"
+
+def load_class_list():
+    try:
+        response = requests.get(f"{BASE_URL}/load_class_list")
+        data = response.json()
+        if data["status"] == "success":
+            return data["data"]
+        else:
+            st.error(f"❌ Lỗi khi tải danh sách lớp: {data['message']}")
+            return []
+    except Exception as e:
+        st.error(f"❌ Lỗi kết nối API: {e}")
+        return []
 
 def fetch_class_statistics(class_id):
     try:
-        res = requests.get("http://127.0.0.1:5000/api/statistics", params={"class_id": class_id})
+        res = requests.get(f"{BASE_URL}/api/statistics", params={"class_id": class_id})
         res.raise_for_status()
         return res.json()
     except Exception as e:
@@ -27,39 +40,21 @@ def fetch_class_statistics(class_id):
 
 def fetch_quiz_behavior(class_id):
     try:
-        url = "http://127.0.0.1:5000/api/quiz-behavior"
-        res = requests.get(url, params={"class_id": class_id})
+        res = requests.get(f"{BASE_URL}/api/quiz-behavior", params={"class_id": class_id})
         res.raise_for_status()
         return res.json()
     except Exception as e:
         st.error(f"Lỗi gọi API hành vi làm bài quiz: {e}")
         return None
+
 def fetch_student_performance(class_id):
     try:
-        url = "http://127.0.0.1:5000/api/student-performance"
-        res = requests.get(url, params={"class_id": class_id})
+        res = requests.get(f"{BASE_URL}/api/student-performance", params={"class_id": class_id})
         res.raise_for_status()
         return res.json()
     except Exception as e:
         st.error(f"Lỗi khi gọi API student-performance: {e}")
         return {}
-
-
-
-import streamlit as st
-import streamlit_menu as menu
-import uuid
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-from scipy.stats import pearsonr
-import time
-import pyodbc
-from import_handler import import_file
-from streamlit import experimental_rerun
-import zipfile
-import io
-import time
 
 
 # CSS styles
@@ -270,18 +265,6 @@ st.markdown(
     f"<h2 style='color: #1F2A44;'>{selected} {('- ' + sub_selected) if sub_selected else ''}</h2>",
     unsafe_allow_html=True
 )
-def load_class_list():
-    try:
-        response = requests.get("http://127.0.0.1:5000/load_class_list")
-        data = response.json()
-        if data["status"] == "success":
-            return data["data"]
-        else:
-            st.error(f"❌ Lỗi khi tải danh sách lớp: {data['message']}")
-            return []
-    except Exception as e:
-        st.error(f"❌ Lỗi kết nối API: {e}")
-        return []
 
 
 if selected == "Overview":
