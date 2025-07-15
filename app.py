@@ -515,27 +515,13 @@ elif selected == "Learning Performance":
 
     # Distribution Rank Student
     st.markdown("<h2>Distribution of Scores Across the Entire Course</h2>", unsafe_allow_html=True)
-        # Lọc các cột bắt đầu bằng 'rank_'
-    # Lọc các cột bắt đầu bằng 'rank_'
-    rank_cols = [c for c in df_ranks.columns if c.startswith('rank_')]
-    
-    # Sắp xếp đúng thứ tự (rank_1 đến rank_10)
-    rank_cols_sorted = sorted(rank_cols, key=lambda x: int(x.split('_')[1]))
-    
-    # Đảm bảo thứ tự cột đúng
-    df_ranks = df_ranks.reindex(columns=rank_cols_sorted + [c for c in df_ranks.columns if not c.startswith('rank_')])
-
 
     if not df_ranks.empty:
         st.write(df_ranks)
         class_id = df_scores["Class SK"].iloc[0]
-        score_ranges = [f"{i}-{i+1}" for i in range(10)]  # Tạo 10 nhãn từ 0-1 đến 9-10
-
-        # Truy xuất dữ liệu đúng thứ tự đã sắp
-        student_counts = df_ranks.loc[0, rank_cols_sorted].values
         df_plot = pd.DataFrame({
-            "Score Range": score_ranges,
-            "Number of students":  student_counts
+            "Score Range": [f"{i}-{i+1}" for i in range(10)],
+            "Number of students": df_ranks.iloc[0, 2:].values
         })
 
         fig_ranks = px.bar(
