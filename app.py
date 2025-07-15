@@ -871,7 +871,7 @@ elif selected == "Learning Behavior":
                     df_avg_question,
                     x="Question ID",
                     y="AVG_Rating",
-                    text=None,
+                    text="AVG_Rating",
                     size_max=10,
                     hover_data=["Question ID", "AVG_Rating"],
                     labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
@@ -881,7 +881,7 @@ elif selected == "Learning Behavior":
                 st.write(df_avg_question.dtypes)
                 st.write(df_avg_question['Question ID'], df_avg_question['AVG_Rating'])
                 fig_rating.update_traces(
-                    texttemplate=None,  # <-- Tắt hoàn toàn text template
+                    texttemplate=None,  # ← Ngăn lỗi liên quan đến 'text'
                     marker=dict(size=6, line=dict(width=1, color="#1B5E20"))
                 )
 
@@ -890,7 +890,9 @@ elif selected == "Learning Behavior":
                     xaxis_title="Question ID",
                     yaxis_title="Average Rating",
                     margin=dict(l=40, r=40, t=40, b=40),
-                    plot_bgcolor="white"
+                    plot_bgcolor="white",
+                    automargin=False  # Ngăn render lại quá nhiều lần
+
                 )
         
             st.plotly_chart(fig_rating, use_container_width=True)
