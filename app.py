@@ -12,7 +12,11 @@ from streamlit import experimental_rerun
 import zipfile
 import io
 
-
+st.set_page_config(
+    page_title="Learning Analytics",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # ---------------------- Gọi API ----------------------
 BASE_URL = "https://b7fdecf28293.ngrok-free.app"
