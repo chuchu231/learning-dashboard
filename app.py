@@ -1125,7 +1125,7 @@ elif selected == "Data Management":
         st.markdown("<div style='text-align: right; margin-top: 10px;'>", unsafe_allow_html=True)
 
         if st.button("⬆️ Import All"):
-            with st.spinner("⏳ Đang import dữ liệu..."):
+            with st.spinner("⏳ Importing data..."):
                 try:
                     # Chuẩn bị file để gửi
                     files = [
@@ -1142,8 +1142,8 @@ elif selected == "Data Management":
                         time.sleep(1.5)
                         experimental_rerun()
                     else:
-                        st.error(response.json().get("message", "❌ Import thất bại."))
-                except Exception as e:
-                    st.error(f"❌ Không thể kết nối API: {e}")
+                st.error(response.json().get("message", "❌ Import failed."))
+            except Exception as e:
+                st.error(f"❌ Cannot connect to API: {e}")
 
         st.markdown("</div>", unsafe_allow_html=True)
