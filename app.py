@@ -871,6 +871,7 @@ elif selected == "Learning Behavior":
                     df_avg_question,
                     x="Question ID",
                     y="AVG_Rating",
+                    text=None,
                     size_max=10,
                     hover_data=["Question ID", "AVG_Rating"],
                     labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
