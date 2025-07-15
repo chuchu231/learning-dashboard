@@ -694,8 +694,6 @@ elif selected == "Learning Behavior":
     df_rating      = pd.DataFrame(results["avg_rating_class"])
     df_avg_question   = pd.DataFrame(results["avg_rating_per_question"])
     df_avg_category  = pd.DataFrame(results["avg_rating_per_category"])
-    st.write(df_avg_question)
-    st.write(df_avg_category)
     
     # --- Section 1: Class Overview ---
     st.markdown("<h2>Class Performance Overview</h2>", unsafe_allow_html=True)
@@ -950,7 +948,7 @@ elif selected == "Correlation Analysis":
         df_lab_score                = pd.DataFrame(results.get("lab_score", []))
         df_final_exam_score         = pd.DataFrame(results.get("final_exam_score", []))
         df_bonus_score              = pd.DataFrame(results.get("bonus_score", []))
-        st.write(df_student_activity_summary)
+
         # --- Hàm hiển thị biểu đồ ---
         def render_scatter_chart(df, x_col, y_col, hover_col, x_label, y_label, title):
             try:
