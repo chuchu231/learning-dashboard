@@ -544,7 +544,7 @@ elif selected == "Learning Performance":
             x="Score Range",
             y="Number of students",
             text_auto=True,
-            labels={"Number of students": "Số sinh viên"},
+            labels={"Number of students": "Student counts"},
             color_discrete_sequence=["#4CAF50"]  # Blue pastel for neutral distribution
         )
 
