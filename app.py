@@ -837,6 +837,7 @@ elif selected == "Learning Behavior":
 
     with col4:
         st.markdown("<h3>Average Rating per Question</h3>", unsafe_allow_html=True)
+        st.write("DEBUG - df_avg_question", df_avg_question)
         if not df_avg_question.empty:
             df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
             df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
