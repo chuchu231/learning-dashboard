@@ -877,6 +877,7 @@ elif selected == "Learning Behavior":
                     color_discrete_sequence=["#66BB6A"]
                 )
                 st.write("Here 2")
+                st.write(df_avg_question.dtypes)
                 fig_rating.update_traces(marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
                 fig_rating.update_layout(
                     height=430,
