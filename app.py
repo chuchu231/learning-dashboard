@@ -15,7 +15,7 @@ import io
 
 
 # ---------------------- Gọi API ----------------------
-BASE_URL = "https://22bf53f743ec.ngrok-free.app"
+BASE_URL = "https://b3db4d142140.ngrok-free.app"
 
 def load_class_list():
     try:
