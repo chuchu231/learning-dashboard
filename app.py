@@ -837,13 +837,15 @@ elif selected == "Learning Behavior":
 
     with col4:
         st.markdown("<h3>Average Rating per Question</h3>", unsafe_allow_html=True)
-        df_avg_question = df_avg_question.dropna(subset=["Question ID", "AVG_Rating"])
+        # Ép kiểu trước, rồi drop NaN
         df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
         df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
+        df_avg_question = df_avg_question.dropna(subset=["Question ID", "AVG_Rating"])
+
+# Vẽ nếu còn dữ liệu
         if not df_avg_question.empty:
-            df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
-            df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
             df_avg_question = df_avg_question.sort_values("Question ID", ascending=True)
+            
             fig_rating = px.scatter(
                 df_avg_question,
                 x="Question ID",
@@ -863,6 +865,9 @@ elif selected == "Learning Behavior":
                 title=None
             )
             st.plotly_chart(fig_rating, use_container_width=True)
+        else:
+            st.warning("⚠️ Không có dữ liệu hợp lệ để hiển thị biểu đồ.")
+
 
     # Average Rating by Category
     st.markdown("<h3>Average Rating by Category</h3>", unsafe_allow_html=True)
