@@ -1141,9 +1141,7 @@ elif selected == "Data Management":
                         st.session_state.uploader_key = f"multi_file_uploader_{uuid.uuid4()}"
                         time.sleep(1.5)
                         experimental_rerun()
-                    else:
-                st.error(response.json().get("message", "❌ Import failed."))
-            except Exception as e:
-                st.error(f"❌ Cannot connect to API: {e}")
+                    else: st.error(response.json().get("message", "❌ Import failed."))
+            except Exception as e: st.error(f"❌ Cannot connect to API: {e}")
 
         st.markdown("</div>", unsafe_allow_html=True)
