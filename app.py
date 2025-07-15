@@ -842,31 +842,55 @@ elif selected == "Learning Behavior":
         df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
         df_avg_question = df_avg_question.dropna(subset=["Question ID", "AVG_Rating"])
 
-# Vẽ nếu còn dữ liệu
+        # Vẽ nếu còn dữ liệu
+        # Ép kiểu an toàn
+        df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
+        df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
+        df_avg_question = df_avg_question.dropna(subset=["Question ID", "AVG_Rating"])
+        
         if not df_avg_question.empty:
             df_avg_question = df_avg_question.sort_values("Question ID", ascending=True)
-            
-            fig_rating = px.scatter(
-                df_avg_question,
-                x="Question ID",
-                y="AVG_Rating",
-                size_max=10,
-                hover_data=["Question ID", "AVG_Rating"],
-                labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
-                color_discrete_sequence=["#66BB6A"]
-            )
-            fig_rating.update_traces(marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
-            fig_rating.update_layout(
-                height=430,
-                xaxis_title="Question ID",
-                yaxis_title="Average Rating",
-                margin=dict(l=40, r=40, t=40, b=40),
-                plot_bgcolor="white",
-                title=None
-            )
+        
+            # Kiểm tra nếu toàn bộ Rating hoặc Question ID giống nhau → chuyển sang bar chart
+            if df_avg_question["AVG_Rating"].nunique() <= 1 or df_avg_question["Question ID"].nunique() <= 1:
+                fig_rating = px.bar(
+                    df_avg_question,
+                    x="Question ID",
+                    y="AVG_Rating",
+                    text="AVG_Rating",
+                    labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
+                    color_discrete_sequence=["#66BB6A"]
+                )
+                fig_rating.update_layout(
+                    height=430,
+                    xaxis_title="Question ID",
+                    yaxis_title="Average Rating",
+                    margin=dict(l=40, r=40, t=40, b=40),
+                    plot_bgcolor="white"
+                )
+            else:
+                fig_rating = px.scatter(
+                    df_avg_question,
+                    x="Question ID",
+                    y="AVG_Rating",
+                    size_max=10,
+                    hover_data=["Question ID", "AVG_Rating"],
+                    labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
+                    color_discrete_sequence=["#66BB6A"]
+                )
+                fig_rating.update_traces(marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
+                fig_rating.update_layout(
+                    height=430,
+                    xaxis_title="Question ID",
+                    yaxis_title="Average Rating",
+                    margin=dict(l=40, r=40, t=40, b=40),
+                    plot_bgcolor="white"
+                )
+        
             st.plotly_chart(fig_rating, use_container_width=True)
         else:
             st.warning("⚠️ Không có dữ liệu hợp lệ để hiển thị biểu đồ.")
+
 
 
     # Average Rating by Category
