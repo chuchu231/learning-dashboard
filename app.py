@@ -890,9 +890,7 @@ elif selected == "Learning Behavior":
                     xaxis_title="Question ID",
                     yaxis_title="Average Rating",
                     margin=dict(l=40, r=40, t=40, b=40),
-                    plot_bgcolor="white",
-                    automargin=False  # Ngăn render lại quá nhiều lần
-
+                    plot_bgcolor="white"
                 )
         
             st.plotly_chart(fig_rating, use_container_width=True)
