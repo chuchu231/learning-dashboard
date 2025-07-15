@@ -872,7 +872,7 @@ elif selected == "Learning Behavior":
                     x="Question ID",
                     y="AVG_Rating",
                     text=None,
-                    size_max=10,
+                    #size_max=10,
                     hover_data=["Question ID", "AVG_Rating"],
                     labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
                     color_discrete_sequence=["#66BB6A"]
@@ -889,7 +889,7 @@ elif selected == "Learning Behavior":
                 #     plot_bgcolor="white"
                 # )
         
-            st.plotly_chart(fig_rating, use_container_width=True)
+            st.plotly_chart(fig_rating, use_container_width=False)
         else:
             st.warning("⚠️ Không có dữ liệu hợp lệ để hiển thị biểu đồ.")
 
