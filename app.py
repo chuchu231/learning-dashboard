@@ -1127,21 +1127,24 @@ elif selected == "Data Management":
         if st.button("⬆️ Import All"):
             with st.spinner("⏳ Importing data..."):
                 try:
-                    # Chuẩn bị file để gửi
+                    # Prepare files to send
                     files = [
                         ("files", (f.name, f.read(), f"type=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
                         for f in uploaded_files
                     ]
-
+        
                     response = requests.post(f"{BASE_URL}/api/import-files", files=files)
-
+        
                     if response.status_code == 200:
                         st.success(response.json()["message"])
-                        # Reset uploader sau khi import thành công
+                        # Reset uploader after successful import
                         st.session_state.uploader_key = f"multi_file_uploader_{uuid.uuid4()}"
                         time.sleep(1.5)
                         experimental_rerun()
-                    else: st.error(response.json().get("message", "❌ Import failed."))
-            except Exception as e: st.error(f"❌ Cannot connect to API: {e}")
+                    else:
+                        st.error(response.json().get("message", "❌ Import failed."))
+                except Exception as e:
+                    st.error(f"❌ Cannot connect to API: {e}")
+
 
         st.markdown("</div>", unsafe_allow_html=True)
