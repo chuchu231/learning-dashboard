@@ -872,7 +872,7 @@ elif selected == "Learning Behavior":
                     x="Question ID",
                     y="AVG_Rating",
                     text=None,
-                    #size_max=10,
+                    size_max=10,
                     hover_data=["Question ID", "AVG_Rating"],
                     labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
                     color_discrete_sequence=["#66BB6A"]
@@ -880,14 +880,18 @@ elif selected == "Learning Behavior":
                 st.write("Here 2")
                 st.write(df_avg_question.dtypes)
                 st.write(df_avg_question['Question ID'], df_avg_question['AVG_Rating'])
-                #fig_rating.update_traces(marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
-                # fig_rating.update_layout(
-                #     height=430,
-                #     xaxis_title="Question ID",
-                #     yaxis_title="Average Rating",
-                #     margin=dict(l=40, r=40, t=40, b=40),
-                #     plot_bgcolor="white"
-                # )
+                fig_rating.update_traces(
+                    texttemplate=None,  # <-- Tắt hoàn toàn text template
+                    marker=dict(size=6, line=dict(width=1, color="#1B5E20"))
+                )
+
+                fig_rating.update_layout(
+                    height=430,
+                    xaxis_title="Question ID",
+                    yaxis_title="Average Rating",
+                    margin=dict(l=40, r=40, t=40, b=40),
+                    plot_bgcolor="white"
+                )
         
             st.plotly_chart(fig_rating, use_container_width=False)
         else:
