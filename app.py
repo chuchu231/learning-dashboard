@@ -516,6 +516,7 @@ elif selected == "Learning Performance":
     # Distribution Rank Student
     st.markdown("<h2>Distribution of Scores Across the Entire Course</h2>", unsafe_allow_html=True)
     if not df_ranks.empty:
+        st.write(df_ranks)
         class_id = df_scores["Class SK"].iloc[0]
         df_plot = pd.DataFrame({
             "Score Range": [f"{i}-{i+1}" for i in range(10)],
