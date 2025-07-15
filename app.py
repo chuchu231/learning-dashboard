@@ -907,7 +907,7 @@ elif selected == "Learning Behavior":
         
             st.plotly_chart(fig_rating, use_container_width=True)
         else:
-            st.warning("⚠️ Không có dữ liệu hợp lệ để hiển thị biểu đồ.")
+            st.warning("⚠️ No valid data available to display the chart.")
 
 
 
@@ -1114,7 +1114,7 @@ elif selected == "Data Management":
         st.session_state.uploader_key = f"multi_file_uploader_{uuid.uuid4()}"
 
     uploaded_files = st.file_uploader(
-        "📂 Upload các file dữ liệu (file chính + quiz)",
+        "📂 Upload data files (main file + quiz files)",
         accept_multiple_files=True,
         type=["xlsx"],
         key=st.session_state.uploader_key
