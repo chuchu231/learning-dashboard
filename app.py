@@ -518,7 +518,7 @@ elif selected == "Learning Performance":
 
     if not df_ranks.empty:
         # 1. Lấy danh sách cột bắt đầu bằng 'rank_'
-        rank_cols = [c for c in df_ranks.columns if c.startswith('rank_')]
+        rank_cols = [c for c in df_ranks.columns if c.startswith('Rank_')]
     
         # 2. Sắp xếp thứ tự cột 'rank_' đúng theo số
         rank_cols_sorted = sorted(rank_cols, key=lambda x: int(x.split('_')[1]))
@@ -528,7 +528,7 @@ elif selected == "Learning Performance":
         st.write(df_ranks)
     
         # 4. Tạo dữ liệu biểu đồ đúng thứ tự
-        score_ranges = [f"{i}-{i+1}" for i in range(1,11)]
+        score_ranges = [f"{i}-{i+1}" for i in range(10)]
         student_counts = df_ranks.loc[0, rank_cols_sorted].values
     
         df_plot = pd.DataFrame({
