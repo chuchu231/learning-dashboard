@@ -893,7 +893,7 @@ elif selected == "Learning Behavior":
                     plot_bgcolor="white"
                 )
         
-            st.plotly_chart(fig_rating, use_container_width=False)
+            st.plotly_chart(fig_rating, use_container_width=True)
         else:
             st.warning("⚠️ Không có dữ liệu hợp lệ để hiển thị biểu đồ.")
 
