@@ -524,7 +524,7 @@ elif selected == "Learning Performance":
         rank_cols_sorted = sorted(rank_cols, key=lambda x: int(x.split('_')[1]))
     
         # 3. Hiển thị DataFrame với cột đã được sắp
-        df_ranks = df_ranks[rank_cols_sorted + [c for c in df_ranks.columns if not c.startswith('rank_')]]
+        df_ranks = df_ranks[rank_cols_sorted + [c for c in df_ranks.columns if not c.startswith('Rank_')]]
         st.write(df_ranks)
     
         # 4. Tạo dữ liệu biểu đồ đúng thứ tự
