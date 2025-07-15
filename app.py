@@ -858,7 +858,6 @@ elif selected == "Learning Behavior":
                     labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
                     color_discrete_sequence=["#66BB6A"]
                 )
-                st.write("here 1")
                 fig_rating.update_layout(
                     height=430,
                     xaxis_title="Question ID",
@@ -871,20 +870,16 @@ elif selected == "Learning Behavior":
                     df_avg_question,
                     x="Question ID",
                     y="AVG_Rating",
-                    text="AVG_Rating",
                     size_max=10,
                     hover_data=["Question ID", "AVG_Rating"],
                     labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
                     color_discrete_sequence=["#66BB6A"]
                 )
-                st.write("Here 2")
-                st.write(df_avg_question.dtypes)
-                st.write(df_avg_question['Question ID'], df_avg_question['AVG_Rating'])
+
                 fig_rating.update_traces(
                     texttemplate=None,  # ← Ngăn lỗi liên quan đến 'text'
                     marker=dict(size=6, line=dict(width=1, color="#1B5E20"))
                 )
-
                 fig_rating.update_layout(
                     height=430,
                     xaxis_title="Question ID",
