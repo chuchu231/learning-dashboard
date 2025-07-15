@@ -528,7 +528,7 @@ elif selected == "Learning Performance":
         st.write(df_ranks)
     
         # 4. Tạo dữ liệu biểu đồ đúng thứ tự
-        score_ranges = [f"{i}-{i+1}" for i in range(10)]
+        score_ranges = [f"{i}-{i+1}" for i in range(0,10)]
         student_counts = df_ranks.loc[0, rank_cols_sorted].values
     
         df_plot = pd.DataFrame({
