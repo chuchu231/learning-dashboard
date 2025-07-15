@@ -525,7 +525,6 @@ elif selected == "Learning Performance":
     
         # 3. Hiển thị DataFrame với cột đã được sắp
         df_ranks = df_ranks[rank_cols_sorted + [c for c in df_ranks.columns if not c.startswith('Rank_')]]
-        st.write(df_ranks)
     
         # 4. Tạo dữ liệu biểu đồ đúng thứ tự
         score_ranges = [f"{i}-{i+1}" for i in range(10)]
