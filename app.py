@@ -878,6 +878,7 @@ elif selected == "Learning Behavior":
                 )
                 st.write("Here 2")
                 st.write(df_avg_question.dtypes)
+                st.write(df_avg_question['Question ID'], df_avg_question['AVG_Rating'])
                 fig_rating.update_traces(marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
                 fig_rating.update_layout(
                     height=430,
