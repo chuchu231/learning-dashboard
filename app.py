@@ -774,6 +774,7 @@ elif selected == "Learning Behavior":
         st.warning("⛔ No data available to display.")
 
     # --- Top 10 Most / Least Active Students ---
+    st.markdown("<h3>Student Engagement Ranking: Top 10 Most and Least Active</h3>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     if not df_activities.empty:
         df_activities.rename(columns={"Sum_NumOfActivity": "Activity Count"}, inplace=True)
