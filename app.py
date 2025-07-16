@@ -723,7 +723,7 @@ elif selected == "Learning Behavior":
                         ]
                     }
                 ))
-                fig1.update_layout(margin=dict(l=20, r=20, t=40, b=20), height=200, plot_bgcolor="lightgrey")
+                fig1.update_layout(margin=dict(l=20, r=20, t=40, b=20), height=200)
                 st.plotly_chart(fig1, use_container_width=True)
 
 
