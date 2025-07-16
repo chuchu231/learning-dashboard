@@ -697,7 +697,7 @@ elif selected == "Learning Behavior":
     df_rating      = pd.DataFrame(results["avg_rating_class"])
     df_avg_question   = pd.DataFrame(results["avg_rating_per_question"])
     df_avg_category  = pd.DataFrame(results["avg_rating_per_category"])
-    st.write(results["avg_quiz_time"])
+   
     # --- Section 1: Class Overview ---
     st.markdown("<h2>Class Performance Overview</h2>", unsafe_allow_html=True)
     col1, col2 = st.columns([1, 1])
