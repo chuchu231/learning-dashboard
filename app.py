@@ -743,8 +743,7 @@ elif selected == "Learning Behavior":
                 fig2.update_layout(
                     margin=dict(l=20, r=20, t=40, b=20),
                     height=200,
-                    plot_bgcolor="lightgrey",        # nền bên trong khung biểu đồ
-                    paper_bgcolor="lightgrey",
+                   
                     font=dict(size=12, color="#111827")
                 )
                 st.plotly_chart(fig2, use_container_width=True)
