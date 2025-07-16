@@ -701,42 +701,54 @@ elif selected == "Learning Behavior":
     # --- Section 1: Class Overview ---
     st.markdown("<h2>Class Performance Overview</h2>", unsafe_allow_html=True)
     col1, col2 = st.columns([1, 1])
-
+    show_avg_time = False
+    show_completion = False
     with col1:
-        st.markdown("<h3>Average Quiz Time</h3>", unsafe_allow_html=True)
-        
         if not df_avg_time.empty:
             df_avg_time["AVG_QuizTime"] = pd.to_numeric(df_avg_time["AVG_QuizTime"], errors="coerce")
-            avg_val = df_avg_time["AVG_QuizTime"].mean()
-            fig1 = go.Figure(go.Indicator(
-                mode="gauge+number",
-                value=avg_val,
-                title={"text": "Average Time (s)", "font": {"size": 14}},
-                gauge={
-                    'axis': {'range': [0, max(30, avg_val * 1.5)]},
-                    'bar': {'color': "#388E3C"},
-                    'steps': [
-                        {'range': [0, avg_val], 'color': "#C8E6C9"},
-                        {'range': [avg_val, avg_val * 1.5], 'color': "#FFF59D"}
-                    ]
-                }
-            ))
-            fig1.update_layout(margin=dict(l=20, r=20, t=40, b=20), height=200, plot_bgcolor="white")
-            st.plotly_chart(fig1, use_container_width=True)
+            if (df_avg_time["AVG_QuizTime"] > 0).any():
+                show_avg_time = True
+                st.markdown("<h3>Average Quiz Time</h3>", unsafe_allow_html=True)
+                avg_val = df_avg_time["AVG_QuizTime"].mean()
+                fig1 = go.Figure(go.Indicator(
+                    mode="gauge+number",
+                    value=avg_val,
+                    title={"text": "Average Time (s)", "font": {"size": 14}},
+                    gauge={
+                        'axis': {'range': [0, max(30, avg_val * 1.5)]},
+                        'bar': {'color': "#388E3C"},
+                        'steps': [
+                            {'range': [0, avg_val], 'color': "#C8E6C9"},
+                            {'range': [avg_val, avg_val * 1.5], 'color': "#FFF59D"}
+                        ]
+                    }
+                ))
+                fig1.update_layout(margin=dict(l=20, r=20, t=40, b=20), height=200, plot_bgcolor="white")
+                st.plotly_chart(fig1, use_container_width=True)
+
 
     with col2:
-        st.markdown("<h3>Quiz Completion Rate</h3>", unsafe_allow_html=True)
         if not df_completion.empty:
             d = df_completion.iloc[0]
-            fig2 = go.Figure(data=[go.Pie(
-                labels=["Completed", "Not Completed"],
-                values=[round(d["Rate_QuizCompleted"]*100, 1), round(d["Rate_QuizNotCompleted"]*100, 1)],
-                hole=0.4,
-                marker=dict(colors=["#66BB6A", "#EF5350"]),
-                hovertemplate="%{label}: %{value:.1f}%<extra></extra>"
-            )])
-            fig2.update_layout(margin=dict(l=20, r=20, t=40, b=20), height=200, plot_bgcolor="white", font=dict(size=12, color="#111827"))
-            st.plotly_chart(fig2, use_container_width=True)
+            if d["Rate_QuizNotCompleted"] != 1.0:  # 1.0 = 100% not completed
+                show_completion = True
+                st.markdown("<h3>Quiz Completion Rate</h3>", unsafe_allow_html=True)
+                fig2 = go.Figure(data=[go.Pie(
+                    labels=["Completed", "Not Completed"],
+                    values=[round(d["Rate_QuizCompleted"] * 100, 1), round(d["Rate_QuizNotCompleted"] * 100, 1)],
+                    hole=0.4,
+                    marker=dict(colors=["#66BB6A", "#EF5350"]),
+                    hovertemplate="%{label}: %{value:.1f}%<extra></extra>"
+                )])
+                fig2.update_layout(
+                    margin=dict(l=20, r=20, t=40, b=20),
+                    height=200,
+                    plot_bgcolor="white",
+                    font=dict(size=12, color="#111827")
+                )
+                st.plotly_chart(fig2, use_container_width=True)
+    if not show_avg_time and not show_completion:
+        st.warning("⛔ No valid quiz time or completion data to display.")
 
     # --- Section 2: Student Performance ---
     st.markdown("<h2>Student Performance Analysis</h2>", unsafe_allow_html=True)
