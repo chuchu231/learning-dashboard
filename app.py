@@ -12,10 +12,13 @@ from streamlit import experimental_rerun
 import zipfile
 import io
 
-
-
+st.set_page_config(
+    page_title="Learning Analytics",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 # ---------------------- Gọi API ----------------------
-BASE_URL = "https://22bf53f743ec.ngrok-free.app"
+BASE_URL = "https://be5a49c4e28d.ngrok-free.app"
 
 def load_class_list():
     try:
