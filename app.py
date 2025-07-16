@@ -790,7 +790,7 @@ elif selected == "Learning Behavior":
                 fig_max.add_trace(go.Scatter(x=[row["Activity Count"]], y=[row["Student ID"]]*2, mode='markers',
                                             marker=dict(color="#2E7D32", size=8), showlegend=False))
             fig_max.update_layout(title="Top 10 Most Active Students", height=500,
-                                margin=dict(l=20, r=20, t=40, b=5), plot_bgcolor="lightgray")
+                                margin=dict(l=20, r=20, t=40, b=5), plot_bgcolor="white")
             st.plotly_chart(fig_max, use_container_width=True)
             avg_count = df_sorted_max["Activity Count"].mean()
             st.markdown(
