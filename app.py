@@ -12,14 +12,10 @@ from streamlit import experimental_rerun
 import zipfile
 import io
 
-st.set_page_config(
-    page_title="Learning Analytics",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+
 
 # ---------------------- Gọi API ----------------------
-BASE_URL = "https://b7fdecf28293.ngrok-free.app"
+BASE_URL = "https://22bf53f743ec.ngrok-free.app"
 
 def load_class_list():
     try:
@@ -403,7 +399,7 @@ elif selected == "Learning Performance":
         ))
         fig.update_layout(
             showlegend=False,
-            annotations=[dict(text=f"{value:.1f}%", x=0.5, y=0.5, font_size=18, showarrow=False)],
+            annotations=[dict(text=f"{value:.2f}%", x=0.5, y=0.5, font_size=18, showarrow=False)],
             margin=dict(t=10, b=10, l=10, r=10),
             height=180
         )
@@ -519,24 +515,11 @@ elif selected == "Learning Performance":
 
     # Distribution Rank Student
     st.markdown("<h2>Distribution of Scores Across the Entire Course</h2>", unsafe_allow_html=True)
-
     if not df_ranks.empty:
-        # 1. Lấy danh sách cột bắt đầu bằng 'rank_'
-        rank_cols = [c for c in df_ranks.columns if c.startswith('Rank_')]
-    
-        # 2. Sắp xếp thứ tự cột 'rank_' đúng theo số
-        rank_cols_sorted = sorted(rank_cols, key=lambda x: int(x.split('_')[1]))
-    
-        # 3. Hiển thị DataFrame với cột đã được sắp
-        df_ranks = df_ranks[rank_cols_sorted + [c for c in df_ranks.columns if not c.startswith('Rank_')]]
-    
-        # 4. Tạo dữ liệu biểu đồ đúng thứ tự
-        score_ranges = [f"{i}-{i+1}" for i in range(10)]
-        student_counts = df_ranks.loc[0, rank_cols_sorted].values
-    
+        class_id = df_scores["Class SK"].iloc[0]
         df_plot = pd.DataFrame({
-            "Score Range": score_ranges,
-            "Number of students": student_counts
+            "Score Range": [f"{i}-{i+1}" for i in range(10)],
+            "Number of students": df_ranks.iloc[0, 2:].values
         })
 
         fig_ranks = px.bar(
@@ -544,7 +527,7 @@ elif selected == "Learning Performance":
             x="Score Range",
             y="Number of students",
             text_auto=True,
-            labels={"Number of students": "Student counts"},
+            labels={"Number of students": "Student Count"},
             color_discrete_sequence=["#4CAF50"]  # Blue pastel for neutral distribution
         )
 
@@ -711,7 +694,7 @@ elif selected == "Learning Behavior":
     df_rating      = pd.DataFrame(results["avg_rating_class"])
     df_avg_question   = pd.DataFrame(results["avg_rating_per_question"])
     df_avg_category  = pd.DataFrame(results["avg_rating_per_category"])
-    
+    st.write(results["avg_quiz_time"])
     # --- Section 1: Class Overview ---
     st.markdown("<h2>Class Performance Overview</h2>", unsafe_allow_html=True)
     col1, col2 = st.columns([1, 1])
@@ -758,15 +741,22 @@ elif selected == "Learning Behavior":
     if not df_quiz_time.empty:
         df = df_quiz_time.copy()
         df["Time Taken"] = pd.to_numeric(df["Time Taken"], errors="coerce")
-        df["Class ID"] = selected_class  
-        chart_type = st.radio("Select chart type", ["Box Plot", "Violin Plot"], horizontal=True)
-        df_for_plot = df.reset_index()
-        if chart_type == "Box Plot":
-            fig3 = px.box(df_for_plot, x="Class ID", y="Time Taken", color_discrete_sequence=["#66BB6A"])
+        if (df["Time Taken"] > 0).any():
+            df["Class ID"] = selected_class  
+            chart_type = st.radio("Select chart type", ["Box Plot", "Violin Plot"], horizontal=True)
+            df_for_plot = df.reset_index()
+
+            if chart_type == "Box Plot":
+                fig3 = px.box(df_for_plot, x="Class ID", y="Time Taken", color_discrete_sequence=["#66BB6A"])
+            else:
+                fig3 = px.violin(df_for_plot, x="Class ID", y="Time Taken", box=True, color_discrete_sequence=["#66BB6A"])
+
+            fig3.update_layout(margin=dict(l=20, r=20, t=20, b=20), height=400, plot_bgcolor="white")
+            st.plotly_chart(fig3, use_container_width=True)
         else:
-            fig3 = px.violin(df_for_plot, x="Class ID", y="Time Taken", box=True, color_discrete_sequence=["#66BB6A"])
-        fig3.update_layout(margin=dict(l=20, r=20, t=20, b=20), height=400, plot_bgcolor="white")
-        st.plotly_chart(fig3, use_container_width=True)
+                st.warning("⛔ No valid quiz time data available to display the chart.")
+    else:
+        st.warning("⛔ No data available to display.")
 
     # --- Top 10 Most / Least Active Students ---
     col1, col2 = st.columns(2)
@@ -854,62 +844,29 @@ elif selected == "Learning Behavior":
 
     with col4:
         st.markdown("<h3>Average Rating per Question</h3>", unsafe_allow_html=True)
-        
-
-        # Vẽ nếu còn dữ liệu
-        # Ép kiểu an toàn
-        df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
-        df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
-        df_avg_question = df_avg_question.dropna(subset=["Question ID", "AVG_Rating"])
-
         if not df_avg_question.empty:
+            df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
+            df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
             df_avg_question = df_avg_question.sort_values("Question ID", ascending=True)
-        
-            # Kiểm tra nếu toàn bộ Rating hoặc Question ID giống nhau → chuyển sang bar chart
-            if df_avg_question["AVG_Rating"].nunique() <= 1 or df_avg_question["Question ID"].nunique() <= 1:
-                fig_rating = px.bar(
-                    df_avg_question,
-                    x="Question ID",
-                    y="AVG_Rating",
-                    text="AVG_Rating",
-                    labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
-                    color_discrete_sequence=["#66BB6A"]
-                )
-                fig_rating.update_layout(
-                    height=430,
-                    xaxis_title="Question ID",
-                    yaxis_title="Average Rating",
-                    margin=dict(l=40, r=40, t=40, b=40),
-                    plot_bgcolor="white"
-                )
-            else:
-                fig_rating = px.scatter(
-                    df_avg_question,
-                    x="Question ID",
-                    y="AVG_Rating",
-                    size_max=10,
-                    hover_data=["Question ID", "AVG_Rating"],
-                    labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
-                    color_discrete_sequence=["#66BB6A"]
-                )
-
-                fig_rating.update_traces(
-                    texttemplate=None,  # ← Ngăn lỗi liên quan đến 'text'
-                    marker=dict(size=6, line=dict(width=1, color="#1B5E20"))
-                )
-                fig_rating.update_layout(
-                    height=430,
-                    xaxis_title="Question ID",
-                    yaxis_title="Average Rating",
-                    margin=dict(l=40, r=40, t=40, b=40),
-                    plot_bgcolor="white"
-                )
-        
+            fig_rating = px.scatter(
+                df_avg_question,
+                x="Question ID",
+                y="AVG_Rating",
+                size_max=10,
+                hover_data=["Question ID", "AVG_Rating"],
+                labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
+                color_discrete_sequence=["#66BB6A"]
+            )
+            fig_rating.update_traces(marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
+            fig_rating.update_layout(
+                height=430,
+                xaxis_title="Question ID",
+                yaxis_title="Average Rating",
+                margin=dict(l=40, r=40, t=40, b=40),
+                plot_bgcolor="white",
+                title=None
+            )
             st.plotly_chart(fig_rating, use_container_width=True)
-        else:
-            st.warning("⚠️ No valid data available to display the chart.")
-
-
 
     # Average Rating by Category
     st.markdown("<h3>Average Rating by Category</h3>", unsafe_allow_html=True)
@@ -980,7 +937,7 @@ elif selected == "Correlation Analysis":
             options=[
                 "Student Activity Summary",
                 "Quiz Time",
-                "Quiz Score",
+                "Quiz-Assignment Score",
                 "Lab Score",
                 "Final Exam Score",
                 "Bonus Score"
@@ -1025,18 +982,21 @@ elif selected == "Correlation Analysis":
         if category == "Quiz Time":
             df = df_quiz_time_summary
             if not df.empty:
-                render_scatter_chart(
-                    df,
-                    "AVG_QuizTime",
-                    "AVG_Overall",
-                    "Student SK Dim",
-                    "Average Quiz Time",
-                    "Final Score",
-                    "Quiz Time vs Final Score"
-                )
+                if (df["AVG_QuizTime"] > 0).any():
+                    render_scatter_chart(
+                        df,
+                        "AVG_QuizTime",
+                        "AVG_Overall",
+                        "Student SK Dim",
+                        "Average Quiz Time",
+                        "Final Score",
+                        "Quiz Time vs Final Score"
+                    )
+                else:
+                    st.warning("⛔ No data available to display.")
 
         elif category == "Student Activity Summary":
-            df = df_student_activity_summary
+            df = df_student_activity_summary.dropna(subset=["Sum_NumOfActivity"])
             if not df.empty:
                 render_scatter_chart(
                     df,
@@ -1048,7 +1008,7 @@ elif selected == "Correlation Analysis":
                     "Interaction Count vs Final Score"
                 )
 
-        elif category == "Quiz Score":
+        elif category == "Quiz-Assignement Score":
             df = df_quiz_score
         elif category == "Lab Score":
             df = df_lab_score
@@ -1059,7 +1019,7 @@ elif selected == "Correlation Analysis":
         else:
             df = pd.DataFrame()
 
-        if category in ["Quiz Score", "Lab Score", "Final Exam Score", "Bonus Score"]:
+        if category in ["Quiz-Assignment Score", "Lab Score", "Final Exam Score", "Bonus Score"]:
             if not df.empty:
                 render_scatter_chart(
                     df,
@@ -1114,7 +1074,7 @@ elif selected == "Data Management":
         st.session_state.uploader_key = f"multi_file_uploader_{uuid.uuid4()}"
 
     uploaded_files = st.file_uploader(
-        "📂 Upload data files (main file + quiz files)",
+        "📂 Upload các file dữ liệu (file chính + quiz)",
         accept_multiple_files=True,
         type=["xlsx"],
         key=st.session_state.uploader_key
@@ -1125,26 +1085,25 @@ elif selected == "Data Management":
         st.markdown("<div style='text-align: right; margin-top: 10px;'>", unsafe_allow_html=True)
 
         if st.button("⬆️ Import All"):
-            with st.spinner("⏳ Importing data..."):
+            with st.spinner("⏳ Đang import dữ liệu..."):
                 try:
-                    # Prepare files to send
+                    # Chuẩn bị file để gửi
                     files = [
                         ("files", (f.name, f.read(), f"type=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
                         for f in uploaded_files
                     ]
-        
+
                     response = requests.post(f"{BASE_URL}/api/import-files", files=files)
-        
+
                     if response.status_code == 200:
                         st.success(response.json()["message"])
-                        # Reset uploader after successful import
+                        # Reset uploader sau khi import thành công
                         st.session_state.uploader_key = f"multi_file_uploader_{uuid.uuid4()}"
                         time.sleep(1.5)
                         experimental_rerun()
                     else:
-                        st.error(response.json().get("message", "❌ Import failed."))
+                        st.error(response.json().get("message", "❌ Import thất bại."))
                 except Exception as e:
-                    st.error(f"❌ Cannot connect to API: {e}")
-
+                    st.error(f"❌ Không thể kết nối API: {e}")
 
         st.markdown("</div>", unsafe_allow_html=True)
