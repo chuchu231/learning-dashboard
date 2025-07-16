@@ -723,7 +723,7 @@ elif selected == "Learning Behavior":
                         ]
                     }
                 ))
-                fig1.update_layout(margin=dict(l=20, r=20, t=40, b=20), height=200, plot_bgcolor="white")
+                fig1.update_layout(margin=dict(l=20, r=20, t=40, b=20), height=200, plot_bgcolor="lightgrey")
                 st.plotly_chart(fig1, use_container_width=True)
 
 
@@ -743,7 +743,8 @@ elif selected == "Learning Behavior":
                 fig2.update_layout(
                     margin=dict(l=20, r=20, t=40, b=20),
                     height=200,
-                    plot_bgcolor="white",
+                    plot_bgcolor="lightgrey",        # nền bên trong khung biểu đồ
+                    paper_bgcolor="lightgrey" 
                     font=dict(size=12, color="#111827")
                 )
                 st.plotly_chart(fig2, use_container_width=True)
@@ -766,7 +767,7 @@ elif selected == "Learning Behavior":
             else:
                 fig3 = px.violin(df_for_plot, x="Class ID", y="Time Taken", box=True, color_discrete_sequence=["#66BB6A"])
 
-            fig3.update_layout(margin=dict(l=20, r=20, t=20, b=20), height=400, plot_bgcolor="white")
+            fig3.update_layout(margin=dict(l=20, r=20, t=20, b=20), height=400, plot_bgcolor="lightgrey")
             st.plotly_chart(fig3, use_container_width=True)
         else:
                 st.warning("⛔ No valid quiz time data available to display the chart.")
@@ -790,7 +791,7 @@ elif selected == "Learning Behavior":
                 fig_max.add_trace(go.Scatter(x=[row["Activity Count"]], y=[row["Student ID"]]*2, mode='markers',
                                             marker=dict(color="#2E7D32", size=8), showlegend=False))
             fig_max.update_layout(title="Top 10 Most Active Students", height=500,
-                                margin=dict(l=20, r=20, t=40, b=5), plot_bgcolor="white")
+                                margin=dict(l=20, r=20, t=40, b=5), plot_bgcolor="lightgray")
             st.plotly_chart(fig_max, use_container_width=True)
             avg_count = df_sorted_max["Activity Count"].mean()
             st.markdown(
@@ -813,7 +814,7 @@ elif selected == "Learning Behavior":
                 fig_min.add_trace(go.Scatter(x=[row["Activity Count"]], y=[row["Student ID"]]*2, mode='markers',
                                             marker=dict(color="#EF5350", size=8), showlegend=False))
             fig_min.update_layout(title="Top 10 Least Active Students", height=500,
-                                margin=dict(l=20, r=20, t=40, b=5), plot_bgcolor="white")
+                                margin=dict(l=20, r=20, t=40, b=5), plot_bgcolor="lightgrey")
             st.plotly_chart(fig_min, use_container_width=True)
             avg_count_min = df_sorted_min["Activity Count"].mean()
             st.markdown(f"""
@@ -879,7 +880,7 @@ elif selected == "Learning Behavior":
                 xaxis_title="Question ID",
                 yaxis_title="Average Rating",
                 margin=dict(l=40, r=40, t=40, b=40),
-                plot_bgcolor="white",
+                plot_bgcolor="lightgrey",
                 title=None
             )
             st.plotly_chart(fig_rating, use_container_width=True)
