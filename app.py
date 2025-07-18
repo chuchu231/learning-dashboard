@@ -785,9 +785,9 @@ elif selected == "Learning Behavior":
             df_sorted_max = df_top10_max.sort_values("Activity Count", ascending=True)
             fig_max = go.Figure()
             for _, row in df_sorted_max.iterrows():
-                fig_max.add_trace(go.Scatter(x=[0, row["Activity Count"]], y=[row["Student ID"]]*2, mode='lines',
+                fig_max.add_trace(go.Scatter(x=[0, row["Activity Count"]], y=[row["Student SK"]]*2, mode='lines',
                                             line=dict(color="#A5D6A7", width=2), showlegend=False))
-                fig_max.add_trace(go.Scatter(x=[row["Activity Count"]], y=[row["Student ID"]]*2, mode='markers',
+                fig_max.add_trace(go.Scatter(x=[row["Activity Count"]], y=[row["Student SK"]]*2, mode='markers',
                                             marker=dict(color="#2E7D32", size=8), showlegend=False))
             fig_max.update_layout(title="Top 10 Most Active Students", height=500,
                                 margin=dict(l=20, r=20, t=40, b=5), plot_bgcolor="white")
@@ -808,9 +808,9 @@ elif selected == "Learning Behavior":
             df_sorted_min = df_top10_min.sort_values("Activity Count", ascending=True)
             fig_min = go.Figure()
             for _, row in df_sorted_min.iterrows():
-                fig_min.add_trace(go.Scatter(x=[0, row["Activity Count"]], y=[row["Student ID"]]*2, mode='lines',
+                fig_min.add_trace(go.Scatter(x=[0, row["Activity Count"]], y=[row["Student SK"]]*2, mode='lines',
                                             line=dict(color="#FFCCBC", width=2), showlegend=False))
-                fig_min.add_trace(go.Scatter(x=[row["Activity Count"]], y=[row["Student ID"]]*2, mode='markers',
+                fig_min.add_trace(go.Scatter(x=[row["Activity Count"]], y=[row["Student SK"]]*2, mode='markers',
                                             marker=dict(color="#EF5350", size=8), showlegend=False))
             fig_min.update_layout(title="Top 10 Least Active Students", height=500,
                                 margin=dict(l=20, r=20, t=40, b=5), plot_bgcolor="white")
@@ -1041,7 +1041,7 @@ elif selected == "Correlation Analysis":
                     df,
                     "AVG_Score",
                     "AVG_Overall",
-                    "Student ID Dim",
+                    "Student SK Dim",
                     category,
                     "Final Score",
                     f"{category} vs Final Score"
