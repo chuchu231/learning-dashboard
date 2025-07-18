@@ -1090,7 +1090,7 @@ elif selected == "Data Management":
         st.session_state.uploader_key = f"multi_file_uploader_{uuid.uuid4()}"
 
     uploaded_files = st.file_uploader(
-        "📂 Upload các file dữ liệu (file chính + quiz)",
+        "📂 Upload files (main + quiz)",
         accept_multiple_files=True,
         type=["xlsx"],
         key=st.session_state.uploader_key
@@ -1118,8 +1118,8 @@ elif selected == "Data Management":
                         time.sleep(1.5)
                         experimental_rerun()
                     else:
-                        st.error(response.json().get("message", "❌ Import thất bại."))
+                        st.error(response.json().get("message", "❌ Import failed."))
                 except Exception as e:
-                    st.error(f"❌ Không thể kết nối API: {e}")
+                    st.error(f"❌ Cannot connect API: {e}")
 
         st.markdown("</div>", unsafe_allow_html=True)
