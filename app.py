@@ -530,8 +530,8 @@ elif selected == "Learning Performance":
     if not df_ranks.empty:
         class_id = df_scores["Class SK"].iloc[0]
         df_plot = pd.DataFrame({
-            "Score Range": [f"{i}-{i+1}" for i in range(10)],
-            "Number of students": df_ranks.iloc[0, 1:].values
+            "Score Range": [f"{i}-{i+1}" for i in range(0,10)],
+            "Number of students": df_ranks.iloc[0, 2:].values
         })
         st.write(df_ranks)
         fig_ranks = px.bar(
