@@ -524,7 +524,7 @@ elif selected == "Learning Performance":
             "Score Range": [f"{i}-{i+1}" for i in range(10)],
             "Number of students": df_ranks.iloc[0, 2:].values
         })
-        st.write(df_plot)
+        st.write(df_ranks)
         fig_ranks = px.bar(
             df_plot,
             x="Score Range",
