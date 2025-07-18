@@ -18,7 +18,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 # ---------------------- Gọi API ----------------------
-BASE_URL = "https://db96c3d29268.ngrok-free.app"
+BASE_URL = "https://349d9f4c2f96.ngrok-free.app"
 
 def load_class_list():
     try:
