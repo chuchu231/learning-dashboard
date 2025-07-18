@@ -523,12 +523,23 @@ elif selected == "Learning Performance":
     st.write(rank_cols)
     # Sắp xếp theo thứ tự tự nhiên
     # sorted() theo string thì 'rank_10' sẽ sau 'rank_2', đúng thứ tự bạn cần
-    rank_cols_sorted = sorted(rank_cols, key=lambda x: int(x.split('Rank_')[-1]))
-    st.write(rank_cols_sorted)
-    st.write(df_ranks)
+    rank_sorted = sorted(rank_cols, key=lambda x: int(x.split('_')[-1]))
+    others = [c for c in df_ranks.columns if not c.startswith('Rank_')]
+    
+    # Lấy vị trí cột Rank đầu tiên
+    first_rank_idx = min(df_ranks.columns.get_loc(c) for c in rank_cols)
+    
+    # Xây dựng lại thứ tự cột
+    new_cols = (
+        list(df_ranks.columns[:first_rank_idx])
+        + rank_sorted
+        + list(df_ranks.columns[first_rank_idx + len(rank_cols):])
+    )
+    df_ranks = df_ranks[new_cols]
+
 
     # Dùng df.reindex để sắp xếp lại cột
-    df_ranks = df_ranks.reindex(columns=rank_cols_sorted + [c for c in df_ranks.columns if not c.startswith('Rank_')])
+    # df_ranks = df_ranks.reindex(columns=rank_cols_sorted + [c for c in df_ranks.columns if not c.startswith('Rank_')])
     if not df_ranks.empty:
         class_id = df_scores["Class SK"].iloc[0]
         df_plot = pd.DataFrame({
