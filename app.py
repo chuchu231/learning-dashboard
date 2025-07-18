@@ -520,11 +520,11 @@ elif selected == "Learning Performance":
     st.markdown("<h2>Distribution of Scores Across the Entire Course</h2>", unsafe_allow_html=True)
     # Lọc các cột bắt đầu bằng 'rank_'
     rank_cols = [c for c in df_ranks.columns if c.startswith('rank_')]
-    
+    st.write(rank_cols)
     # Sắp xếp theo thứ tự tự nhiên
     # sorted() theo string thì 'rank_10' sẽ sau 'rank_2', đúng thứ tự bạn cần
     rank_cols_sorted = sorted(rank_cols)
-    
+    st.write(rank_cols_sorted)
     # Dùng df.reindex để sắp xếp lại cột
     df_ranks = df_ranks.reindex(columns=rank_cols_sorted + [c for c in df_ranks.columns if not c.startswith('rank_')])
     if not df_ranks.empty:
