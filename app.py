@@ -523,7 +523,7 @@ elif selected == "Learning Performance":
     st.write(rank_cols)
     # Sắp xếp theo thứ tự tự nhiên
     # sorted() theo string thì 'rank_10' sẽ sau 'rank_2', đúng thứ tự bạn cần
-    rank_cols_sorted = sorted(rank_cols)
+    rank_cols_sorted = sorted(rank_cols, key=lambda x: int(x.split('_')[-1]))
     st.write(rank_cols_sorted)
     # Dùng df.reindex để sắp xếp lại cột
     df_ranks = df_ranks.reindex(columns=rank_cols_sorted + [c for c in df_ranks.columns if not c.startswith('Rank_')])
