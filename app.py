@@ -520,6 +520,7 @@ elif selected == "Learning Performance":
     st.markdown("<h2>Distribution of Scores Across the Entire Course</h2>", unsafe_allow_html=True)
     # Sắp xếp theo thứ tự tự nhiên
     # sorted() theo string thì 'rank_10' sẽ sau 'rank_2', đúng thứ tự bạn cần
+    rank_cols = [c for c in df_ranks.columns if c.startswith('Rank_')]
     rank_sorted = sorted(rank_cols, key=lambda x: int(x.split('_')[-1]))
     others = [c for c in df_ranks.columns if not c.startswith('Rank_')]
     
