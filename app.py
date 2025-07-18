@@ -1101,7 +1101,7 @@ elif selected == "Data Management":
         st.markdown("<div style='text-align: right; margin-top: 10px;'>", unsafe_allow_html=True)
 
         if st.button("⬆️ Import All"):
-            with st.spinner("⏳ Đang import dữ liệu..."):
+            with st.spinner("⏳ Importing Data..."):
                 try:
                     # Chuẩn bị file để gửi
                     files = [
