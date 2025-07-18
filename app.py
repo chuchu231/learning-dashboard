@@ -518,9 +518,6 @@ elif selected == "Learning Performance":
 
     # Distribution Rank Student
     st.markdown("<h2>Distribution of Scores Across the Entire Course</h2>", unsafe_allow_html=True)
-    # Lọc các cột bắt đầu bằng 'rank_'
-    rank_cols = [c for c in df_ranks.columns if c.startswith('Rank_')]
-    st.write(rank_cols)
     # Sắp xếp theo thứ tự tự nhiên
     # sorted() theo string thì 'rank_10' sẽ sau 'rank_2', đúng thứ tự bạn cần
     rank_sorted = sorted(rank_cols, key=lambda x: int(x.split('_')[-1]))
@@ -546,7 +543,7 @@ elif selected == "Learning Performance":
             "Score Range": [f"{i}-{i+1}" for i in range(0,10)],
             "Number of students": df_ranks.iloc[0, 2:].values
         })
-        st.write(df_ranks)
+
         fig_ranks = px.bar(
             df_plot,
             x="Score Range",
