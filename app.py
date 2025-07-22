@@ -1044,7 +1044,7 @@ elif selected == "Correlation Analysis":
                     "Interaction Count vs Final Score"
                 )
 
-        elif category == "Quiz-Assignement Score":
+        elif category == "Quiz-Assignment Score":
             df = df_quiz_score
         elif category == "Lab Score":
             df = df_lab_score
