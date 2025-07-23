@@ -979,7 +979,8 @@ elif selected == "Correlation Analysis":
                 "Quiz-Assignment Score",
                 "Lab Score",
                 "Final Exam Score",
-                "Bonus Score"
+                "Bonus Score",
+                "All View"
             ],
             index=0
         )
