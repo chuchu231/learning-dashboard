@@ -1011,7 +1011,7 @@ elif selected == "Correlation Analysis":
                     title=title
                 )
             
-                fig.update_traces(marker=dict(size=10))  # Tăng kích thước điểm
+                fig.update_traces(marker=dict(size=8))  # Tăng kích thước điểm
             
                 corr, _ = pearsonr(x.dropna(), y.dropna())
                 st.plotly_chart(fig, use_container_width=True)
