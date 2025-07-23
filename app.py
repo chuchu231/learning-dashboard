@@ -1073,6 +1073,90 @@ elif selected == "Correlation Analysis":
                     "Final Score",
                     f"{category} vs Final Score"
                 )
+        if category == "All View":
+            # 1st Row: Quiz Time, Student Activity, Quiz-Assignment Score
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+                df = df_quiz_time_summary
+                if not df.empty and (df["AVG_QuizTime"] > 0).any():
+                    render_scatter_chart(
+                        df,
+                        "AVG_QuizTime",
+                        "AVG_Overall",
+                        "Student SK Dim",
+                        "Average Quiz Time",
+                        "Final Score",
+                        "Quiz Time vs Final Score"
+                    )
+
+            with col2:
+                df = df_student_activity_summary.dropna(subset=["Sum_NumOfActivity"])
+                if not df.empty:
+                    render_scatter_chart(
+                        df,
+                        "Sum_NumOfActivity",
+                        "AVG_Overall",
+                        "Student SK Dim",
+                        "Total Interactions",
+                        "Final Score",
+                        "Interaction Count vs Final Score"
+                    )
+
+            with col3:
+                df = df_quiz_score
+                if not df.empty:
+                    render_scatter_chart(
+                        df,
+                        "AVG_Score",
+                        "AVG_Overall",
+                        "Student ID Dim",
+                        "Quiz-Assignment Score",
+                        "Final Score",
+                        "Quiz-Assignment Score vs Final Score"
+                    )
+
+            # 2nd Row: Lab Score, Final Exam Score, Bonus Score
+            col4, col5, col6 = st.columns(3)
+
+            with col4:
+                df = df_lab_score
+                if not df.empty:
+                    render_scatter_chart(
+                        df,
+                        "AVG_Score",
+                        "AVG_Overall",
+                        "Student ID Dim",
+                        "Lab Score",
+                        "Final Score",
+                        "Lab Score vs Final Score"
+                    )
+
+            with col5:
+                df = df_final_exam_score
+                if not df.empty:
+                    render_scatter_chart(
+                        df,
+                        "AVG_Score",
+                        "AVG_Overall",
+                        "Student ID Dim",
+                        "Final Exam Score",
+                        "Final Score",
+                        "Final Exam Score vs Final Score"
+                    )
+
+            with col6:
+                df = df_bonus_score
+                if not df.empty:
+                    render_scatter_chart(
+                        df,
+                        "AVG_Score",
+                        "AVG_Overall",
+                        "Student ID Dim",
+                        "Bonus Score",
+                        "Final Score",
+                        "Bonus Score vs Final Score"
+                    )
 
 
 elif selected == "Data Management":
