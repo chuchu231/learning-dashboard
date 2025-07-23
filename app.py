@@ -1015,7 +1015,7 @@ elif selected == "Correlation Analysis":
             
                 corr, _ = pearsonr(x.dropna(), y.dropna())
                 st.plotly_chart(fig, use_container_width=True)
-                st.markdown(f"<h4>Pearson Correlation Coefficient (r): <code>{corr:.3f}</code></h4>", unsafe_allow_html=True)
+                st.markdown(f"<h5>Pearson Correlation Coefficient (r): <code>{corr:.3f}</code></h5>", unsafe_allow_html=True)
                 st.markdown("---")
             except Exception as e:
                 st.warning(f"Lỗi khi hiển thị biểu đồ: {e}")
