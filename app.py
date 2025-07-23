@@ -732,7 +732,7 @@ elif selected == "Learning Behavior":
                 fig1 = go.Figure(go.Indicator(
                     mode="gauge+number",
                     value=avg_val,
-                    title={"text": "Average Time (s)", "font": {"size": 14}},
+                    title={"text": "Average Time (s)", "font": {"size": 12}},
                     gauge={
                         'axis': {'range': [0, max(30, avg_val * 1.5)]},
                         'bar': {'color': "#388E3C"},
