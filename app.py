@@ -492,12 +492,12 @@ elif selected == "Learning Performance":
     if not df_scores.empty:
         fig_scores = go.Figure()
         fig_scores.add_trace(go.Bar(
-            y=[selected_class_full], x=[df_scores["Max Score"].iloc[0]], name='Max Score',
+            y=[selected_class], x=[df_scores["Max Score"].iloc[0]], name='Max Score',
             orientation='h', marker_color="#4CAF50",  # Green pastel for Max Score
             hovertemplate='Class: %{y}<br>Max Score: %{x}<extra></extra>'
         ))
         fig_scores.add_trace(go.Bar(
-            y=[selected_class_full], x=[df_scores["Min Score"].iloc[0]], name='Min Score',
+            y=[selected_class], x=[df_scores["Min Score"].iloc[0]], name='Min Score',
             orientation='h', marker_color='#EF5350',  # Red pastel for Min Score
             hovertemplate='Class: %{y}<br>Min Score: %{x}<extra></extra>'
         ))
@@ -593,16 +593,16 @@ elif selected == "Learning Performance":
     if not df_dist.empty:
         class_id = df_dist["Class SK"].iloc[0]
         fig_dist = go.Figure()
-        fig_dist.add_trace(go.Bar(y=[class_id], x=[df_dist["Excellent"].iloc[0]],
+        fig_dist.add_trace(go.Bar(y=[selected_class], x=[df_dist["Excellent"].iloc[0]],
             name="Excellent", orientation='h', marker_color="#388E3C",  # Dark Green pastel for Excellent
             hovertemplate="Excellent: %{x}<extra></extra>"))
-        fig_dist.add_trace(go.Bar(y=[class_id], x=[df_dist["Good"].iloc[0]],
+        fig_dist.add_trace(go.Bar(y=[selected_class], x=[df_dist["Good"].iloc[0]],
             name="Good", orientation='h', marker_color="#66BB6A",  # Green pastel for Good
             hovertemplate="Good: %{x}<extra></extra>"))
-        fig_dist.add_trace(go.Bar(y=[class_id], x=[df_dist["Average"].iloc[0]],
+        fig_dist.add_trace(go.Bar(y=[selected_class], x=[df_dist["Average"].iloc[0]],
             name="Average", orientation='h', marker_color="#FFCA28",  # Yellow pastel for Average
             hovertemplate="Average: %{x}<extra></extra>"))
-        fig_dist.add_trace(go.Bar(y=[class_id], x=[df_dist["Poor"].iloc[0]],
+        fig_dist.add_trace(go.Bar(y=[selected_class], x=[df_dist["Poor"].iloc[0]],
             name="Poor", orientation='h', marker_color="#EF5350",  # Red pastel for Poor
             hovertemplate="Poor: %{x}<extra></extra>"))
         fig_dist.update_layout(
