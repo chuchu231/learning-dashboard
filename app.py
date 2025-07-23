@@ -1106,7 +1106,6 @@ elif selected == "Correlation Analysis":
 
             with col3:
                 df = df_quiz_score
-                st.write(df)
                 if not df.empty:
                     render_scatter_chart(
                         df,
