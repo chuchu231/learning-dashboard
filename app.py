@@ -492,12 +492,12 @@ elif selected == "Learning Performance":
     if not df_scores.empty:
         fig_scores = go.Figure()
         fig_scores.add_trace(go.Bar(
-            y=[class_id], x=[df_scores["Max Score"].iloc[0]], name='Max Score',
+            y=[selected_class_full], x=[df_scores["Max Score"].iloc[0]], name='Max Score',
             orientation='h', marker_color="#4CAF50",  # Green pastel for Max Score
             hovertemplate='Class: %{y}<br>Max Score: %{x}<extra></extra>'
         ))
         fig_scores.add_trace(go.Bar(
-            y=[class_id], x=[df_scores["Min Score"].iloc[0]], name='Min Score',
+            y=[selected_class_full], x=[df_scores["Min Score"].iloc[0]], name='Min Score',
             orientation='h', marker_color='#EF5350',  # Red pastel for Min Score
             hovertemplate='Class: %{y}<br>Min Score: %{x}<extra></extra>'
         ))
