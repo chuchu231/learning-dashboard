@@ -882,15 +882,15 @@ elif selected == "Learning Behavior":
         st.markdown("<h3>Average Rating per Question</h3>", unsafe_allow_html=True)
         if not df_avg_question.empty:
             df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
-        
+            df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
             df_avg_question = df_avg_question.sort_values("Question ID", ascending=True)
             fig_rating = px.scatter(
                 df_avg_question,
                 x="Question ID",
                 y="AVG_Rating",
                 size_max=10,
-                hover_data=["Question ID", "AVG_Rating"],
-                labels={"AVG_Rating": "Average Rating", "Question ID": "Question"},
+                hover_data=["Question Content", "AVG_Rating"],
+                labels={"AVG_Rating": "Average Rating", "Question Content": "Question"},
                 color_discrete_sequence=["#66BB6A"]
             )
             fig_rating.update_traces(marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
