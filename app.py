@@ -884,6 +884,7 @@ elif selected == "Learning Behavior":
             df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
             df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
             df_avg_question = df_avg_question.sort_values("Question ID", ascending=True)
+        
             fig_rating = px.scatter(
                 df_avg_question,
                 x="Question ID",
@@ -903,6 +904,8 @@ elif selected == "Learning Behavior":
                 title=None
             )
             st.plotly_chart(fig_rating, use_container_width=True)
+
+            
 
     # Average Rating by Category
     st.markdown("<h3>Average Rating by Category</h3>", unsafe_allow_html=True)
