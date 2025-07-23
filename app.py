@@ -1001,21 +1001,25 @@ elif selected == "Correlation Analysis":
                 x = pd.to_numeric(df[x_col], errors="coerce")
                 y = pd.to_numeric(df[y_col], errors="coerce")
                 hover = df[hover_col]
-
+            
                 fig = px.scatter(
                     x=x,
                     y=y,
                     hover_name=hover,
-                    color_discrete_sequence=["#66BB6A"],
+                    color_discrete_sequence=["#E53935"],  # Đổi sang màu đỏ
                     labels={"x": x_label, "y": y_label},
                     title=title
                 )
+            
+                fig.update_traces(marker=dict(size=10))  # Tăng kích thước điểm
+            
                 corr, _ = pearsonr(x.dropna(), y.dropna())
                 st.plotly_chart(fig, use_container_width=True)
                 st.markdown(f"**Pearson Correlation Coefficient (r):** `{corr:.3f}`")
                 st.markdown("---")
             except Exception as e:
                 st.warning(f"Lỗi khi hiển thị biểu đồ: {e}")
+
 
         # --- Vẽ biểu đồ tuỳ theo category ---
         if category == "Quiz Time":
