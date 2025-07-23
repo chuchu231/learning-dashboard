@@ -490,7 +490,6 @@ elif selected == "Learning Performance":
     # Max/Min Scores
     st.markdown("<h2>Max–Min Score Gap</h2>", unsafe_allow_html=True)
     if not df_scores.empty:
-        class_id = df_scores["Class SK"].iloc[0]
         fig_scores = go.Figure()
         fig_scores.add_trace(go.Bar(
             y=[class_id], x=[df_scores["Max Score"].iloc[0]], name='Max Score',
