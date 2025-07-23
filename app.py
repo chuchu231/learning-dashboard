@@ -882,7 +882,7 @@ elif selected == "Learning Behavior":
         st.markdown("<h3>Average Rating per Question</h3>", unsafe_allow_html=True)
         if not df_avg_question.empty:
             df_avg_question["AVG_Rating"] = pd.to_numeric(df_avg_question["AVG_Rating"], errors="coerce")
-            df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
+        
             df_avg_question = df_avg_question.sort_values("Question ID", ascending=True)
             fig_rating = px.scatter(
                 df_avg_question,
