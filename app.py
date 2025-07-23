@@ -1112,7 +1112,7 @@ elif selected == "Correlation Analysis":
                         df,
                         "AVG_Score",
                         "AVG_Overall",
-                        "Student ID Dim",
+                        "Student SK Dim",
                         "Quiz-Assignment Score",
                         "Final Score",
                         "Quiz-Assignment Score vs Final Score"
@@ -1128,7 +1128,7 @@ elif selected == "Correlation Analysis":
                         df,
                         "AVG_Score",
                         "AVG_Overall",
-                        "Student ID Dim",
+                        "Student SK Dim",
                         "Lab Score",
                         "Final Score",
                         "Lab Score vs Final Score"
@@ -1141,7 +1141,7 @@ elif selected == "Correlation Analysis":
                         df,
                         "AVG_Score",
                         "AVG_Overall",
-                        "Student ID Dim",
+                        "Student SK Dim",
                         "Final Exam Score",
                         "Final Score",
                         "Final Exam Score vs Final Score"
@@ -1154,7 +1154,7 @@ elif selected == "Correlation Analysis":
                         df,
                         "AVG_Score",
                         "AVG_Overall",
-                        "Student ID Dim",
+                        "Student SK Dim",
                         "Bonus Score",
                         "Final Score",
                         "Bonus Score vs Final Score"
