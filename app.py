@@ -914,7 +914,7 @@ elif selected == "Learning Behavior":
             "Course Materials": [1, 2, 3],
             "Course Usefulness": [4, 5],
             "Teaching Methods": [6, 7, 8, 9, 10, 11, 19, 20],
-            "Student Interaction": [12, 13, 21],
+            "Lecturer Interaction": [12, 13, 21],
             "Assessment and Exams": [14, 15, 16, 17, 18],
             "Overall Satisfaction": [22, 23, 24, 25]
         }
