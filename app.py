@@ -233,7 +233,7 @@ single_menu_style = {
         "background_color": "#C8E6C9",  # Nền xanh nhạt
     },
     "active_menu": {
-        "color": "#ffffff",
+        "color": "#EDE8D0",
         "background_color": "#66BB6A",  # Xanh lá vừa active
     }
 }
@@ -246,7 +246,7 @@ submenu_style = {
         "background_color": "#E8F5E9",  # Nhẹ nhàng hơn
     },
     "active_submenu": {
-        "color": "#ffffff",
+        "color": "#EDE8D0",
         "background_color": "#66BB6A",
     }
 }
