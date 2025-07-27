@@ -884,10 +884,10 @@ elif selected == "Learning Behavior":
                 hover_data=["Question Content", "AVG_Rating"],
                 labels={"AVG_Rating": "Average Rating", "Question Content": "Question"},
                 markers=True,
-                color_discrete_sequence=["#66BB6A"]
+                color_discrete_sequence=["#CD1C18"]
             )
         
-            fig_rating.update_traces(line=dict(width=2), marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
+            fig_rating.update_traces(line=dict(width=2), marker=dict(size=9, line=dict(width=1, color="#CD1C18")))
             fig_rating.update_layout(
                 height=430,
                 xaxis_title="Question ID",
