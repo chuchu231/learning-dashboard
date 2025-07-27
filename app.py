@@ -877,16 +877,17 @@ elif selected == "Learning Behavior":
             df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
             df_avg_question = df_avg_question.sort_values("Question ID", ascending=True)
         
-            fig_rating = px.bar(
+            fig_rating = px.line(
                 df_avg_question,
                 x="Question ID",
                 y="AVG_Rating",
                 hover_data=["Question Content", "AVG_Rating"],
                 labels={"AVG_Rating": "Average Rating", "Question Content": "Question"},
+                markers=True,
                 color_discrete_sequence=["#66BB6A"]
             )
         
-            fig_rating.update_traces(marker_line=dict(width=1, color="#1B5E20"))
+            fig_rating.update_traces(line=dict(width=2), marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
             fig_rating.update_layout(
                 height=430,
                 xaxis_title="Question ID",
