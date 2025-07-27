@@ -675,7 +675,7 @@ elif selected == "Learning Behavior":
             transform: translateY(-4px);
         }
         .metric-label {
-            font-size: 1.55rem;
+            font-size: 1.75rem;
             font-weight: 500;
             color: #64748b;
             margin-2rem; color: #111827; }
