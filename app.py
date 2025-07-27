@@ -215,8 +215,8 @@ header_style = {
     "items_direction": "column",
     "horizontal_alignment": "center",
     "font_family": "'Arial', sans-serif",
-    "font_size": "4rem",
-    "height": "6rem",
+    "font_size": "6rem",
+    "height": "10rem",
     "text_color": "#1B5E20",  # Xanh lá đậm
     "logo": {
         "border_radius": "100px",
