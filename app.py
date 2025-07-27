@@ -66,39 +66,39 @@ st.markdown("""
     /* Sidebar màu xanh lá vừa */
     [data-testid="stSidebar"] {
         background-color: #A5D6A7 !important;
-        font-size: 16px !important;
+        font-size: 20px !important;
     }
 
     /* Font & Text */
     html, body, .stMarkdown, .stWrite, .css-10trblm, .css-1v0mbdj, .css-1d391kg {
         font-family: 'Arial', sans-serif !important;
         color: #1B5E20;
-        font-size: 16px !important;
+        font-size: 20px !important;
     }
 
     h1 {
-        font-size: 36px !important;
+        font-size: 50px !important;
         color: #388E3C;
     }
 
     h2 {
-        font-size: 30px !important;
+        font-size: 40px !important;
         color: #388E3C;
     }
 
     h3 {
-        font-size: 24px !important;
+        font-size: 30px !important;
         color: #388E3C;
     }
 
     h4 {
-        font-size: 20px !important;
+        font-size: 25px !important;
         color: #388E3C;
     }
 
     a {
         color: #1B5E20;
-        font-size: 16px !important;
+        font-size: 20px !important;
     }
 
     a:hover {
@@ -112,7 +112,7 @@ st.markdown("""
         box-shadow: 0 2px 5px rgba(0,0,0,0.08);
         margin-bottom: 20px;
         background-color: #E8F5E9;
-        font-size: 16px !important;
+        font-size: 20px !important;
     }
 
     /* File uploader */
@@ -120,13 +120,13 @@ st.markdown("""
         background-color: #F1F8E9;
         border-radius: 8px;
         padding: 10px;
-        font-size: 15px !important;
+        font-size: 20px !important;
     }
 
     [data-testid="stFileUploader"] label {
         color: #1B5E20 !important;
         font-weight: 500;
-        font-size: 16px !important;
+        font-size: 20px !important;
     }
 
     /* Data card */
@@ -136,18 +136,18 @@ st.markdown("""
         padding: 24px;
         margin-bottom: 24px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-        font-size: 16px !important;
+        font-size: 20px !important;
     }
 
     .data-title {
-        font-size: 22px !important;
+        font-size: 25px !important;
         font-weight: 600;
         color: #1B5E20;
         margin: 0;
     }
 
     .data-desc {
-        font-size: 16px !important;
+        font-size: 20px !important;
         color: #4B5563;
         margin: 4px 0 0 0;
     }
