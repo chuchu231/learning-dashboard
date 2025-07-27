@@ -698,7 +698,7 @@ elif selected == "Learning Behavior":
         h3 { color: #1F2937; font-weight: 500; font-size: 1.5rem; margin-bottom: 0.75rem; }
 
         .stRadio > div { flex-direction: row; gap: 1rem; }
-        .stMetric { font-size: 1.25rem; color: #111827; }
+        .stMetric { font-size: 1rem; color: #111827; }
         
         .divider {
             border-top: 1px solid #e5e7eb;
