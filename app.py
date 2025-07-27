@@ -288,7 +288,7 @@ if selected == "Overview":
     st.markdown("""
         <div class='card'>
             <h3 style='color: #1F2A44;'>🔍 Welcome to Learning Analytics</h3>
-            <p style='font-size: 16px; color: #4B5563;'>
+            <p style='font-size: 18px; color: #4B5563;'>
                 Learning Analytics is an intelligent system that helps institutions and instructors monitor, assess, and improve students' academic performance through intuitive and effective visualizations.
             </p>
             <hr style='border-top: 1px solid #E5E7EB;'>
