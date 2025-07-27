@@ -334,7 +334,7 @@ elif selected == "Learning Performance":
             margin-bottom: 0.5rem;
         }
         .metric-value {
-            font-size: 2.5rem;
+            font-size: 1.1rem;
             font-weight: 700;
         }
         .metric-value.avg-value {
@@ -354,9 +354,9 @@ elif selected == "Learning Performance":
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             margin-bottom: 1.5rem;
         }
-        h1 { color: #111827; font-weight: 700; font-size: 2rem; text-align: center; margin-bottom: 2rem; }
-        h2 { color: #1F2937; font-weight: 600; font-size: 1.5rem; margin-bottom: 1rem; }
-        h3 { color: #1F2937; font-weight: 500; font-size: 1.25rem; margin-bottom: 0.75rem; }
+        h1 { color: #111827; font-weight: 700; font-size: 3rem; text-align: center; margin-bottom: 2rem; }
+        h2 { color: #1F2937; font-weight: 600; font-size: 2rem; margin-bottom: 1rem; }
+        h3 { color: #1F2937; font-weight: 500; font-size: 1.5rem; margin-bottom: 0.75rem; }
         .divider {
             border-top: 1px solid #e5e7eb;
             margin: 2rem 0;
