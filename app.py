@@ -881,12 +881,12 @@ elif selected == "Learning Behavior":
                 df_avg_question,
                 x="Question ID",
                 y="AVG_Rating",
-                size_max=10,
                 hover_data=["Question Content", "AVG_Rating"],
                 labels={"AVG_Rating": "Average Rating", "Question Content": "Question"},
                 color_discrete_sequence=["#66BB6A"]
             )
-            fig_rating.update_traces(marker=dict(size=6, line=dict(width=1, color="#1B5E20")))
+        
+            fig_rating.update_traces(marker_line=dict(width=1, color="#1B5E20"))
             fig_rating.update_layout(
                 height=430,
                 xaxis_title="Question ID",
@@ -896,6 +896,7 @@ elif selected == "Learning Behavior":
                 title=None
             )
             st.plotly_chart(fig_rating, use_container_width=True)
+
 
             
 
