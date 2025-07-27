@@ -328,13 +328,13 @@ elif selected == "Learning Performance":
             transform: translateY(-4px);
         }
         .metric-label {
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             font-weight: 500;
             color: #64748b;
             margin-bottom: 0.5rem;
         }
         .metric-value {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
         }
         .metric-value.avg-value {
@@ -374,12 +374,12 @@ elif selected == "Learning Performance":
             border-radius: 8px;
             padding: 1rem;
             color: #78350f;
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-bottom: 1rem;
         }
         .doughnut-caption {
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #64748b;
             margin-top: -0.5rem;
         }
@@ -493,7 +493,7 @@ elif selected == "Learning Performance":
                 height=430,
                 plot_bgcolor='white',
                 margin=dict(l=40, r=40, t=80, b=60),
-                font=dict(size=12, color='#1e293b')
+                font=dict(size=20, color='#1e293b')
             )
             st.plotly_chart(fig_pass_fail, use_container_width=True)
         else:
@@ -521,7 +521,7 @@ elif selected == "Learning Performance":
             height=200, hovermode='closest',
             legend=dict(x=1, y=1.1, xanchor='right'),
             margin=dict(l=20, r=20, t=20, b=20),
-            font=dict(size=12, color='#1e293b')
+            font=dict(size=18, color='#1e293b')
         )
         st.plotly_chart(fig_scores, use_container_width=True)
     else:
@@ -571,7 +571,7 @@ elif selected == "Learning Performance":
             margin=dict(t=60, b=60, l=40, r=40),
             xaxis_title="Score Range",
             yaxis_title="Number of Students",
-            font=dict(size=14),
+            font=dict(size=18),
             plot_bgcolor='rgba(0,0,0,0)',
             paper_bgcolor='rgba(0,0,0,0)'
         )
@@ -624,7 +624,7 @@ elif selected == "Learning Performance":
             height=350, plot_bgcolor='white', hovermode='closest',
             legend=dict(x=1, y=1.1, xanchor='right'),
             margin=dict(l=20, r=20, t=20, b=20),
-            font=dict(size=12, color='#1e293b'),
+            font=dict(size=20, color='#1e293b'),
             bargap=0.3,
             bargroupgap=0.3
         )
