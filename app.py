@@ -334,7 +334,7 @@ elif selected == "Learning Performance":
             margin-bottom: 0.5rem;
         }
         .metric-value {
-            font-size: 1.1rem;
+            font-size: 1.5rem; 
             font-weight: 700;
         }
         .metric-value.avg-value {
