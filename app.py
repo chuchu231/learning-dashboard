@@ -319,7 +319,7 @@ elif selected == "Learning Performance":
         .stMetric {
             background-color: #ffffff;
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 2rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             text-align: left;
             transition: transform 0.2s;
@@ -328,13 +328,13 @@ elif selected == "Learning Performance":
             transform: translateY(-4px);
         }
         .metric-label {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: 500;
             color: #64748b;
             margin-bottom: 0.5rem;
         }
         .metric-value {
-            font-size: 1.5rem; 
+            font-size: 2.5rem; 
             font-weight: 700;
         }
         .metric-value.avg-value {
@@ -374,12 +374,12 @@ elif selected == "Learning Performance":
             border-radius: 8px;
             padding: 1rem;
             color: #78350f;
-            font-size: 0.9rem;
+            font-size: 1rem;
             margin-bottom: 1rem;
         }
         .doughnut-caption {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #64748b;
             margin-top: -0.5rem;
         }
