@@ -666,7 +666,7 @@ elif selected == "Learning Behavior":
         .stMetric {
             background-color: #ffffff;
             border-radius: 16px;
-            padding: 1rem;
+            padding: 1.25rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             text-align: left;
             transition: transform 0.2s;
@@ -675,7 +675,7 @@ elif selected == "Learning Behavior":
             transform: translateY(-4px);
         }
         .metric-label {
-            font-size: 2rem;
+            font-size: 1.25rem;
             font-weight: 500;
             color: #64748b;
             margin-2rem; color: #111827; 
