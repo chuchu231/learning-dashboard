@@ -334,7 +334,7 @@ elif selected == "Learning Performance":
             margin-bottom: 0.5rem;
         }
         .metric-value {
-            font-size: 2rem; 
+            font-size: 1.75rem; 
             font-weight: 700;
         }
         .metric-value.avg-value {
@@ -678,7 +678,21 @@ elif selected == "Learning Behavior":
             font-size: 1.75rem;
             font-weight: 500;
             color: #64748b;
-            margin-2rem; color: #111827; }
+            margin-2rem; color: #111827; 
+        }
+        .metric-value {
+            font-size: 1.75rem; 
+            font-weight: 700;
+        }
+        .metric-value.avg-value {
+            color: #F97316;  /* Orange */
+        }
+        .metric-value.max-value {
+            color: #10B981;  /* Green */
+        }
+        .metric-value.min-value {
+            color: #EF4444;  /* Red */
+        }
         
         .divider {
             border-top: 1px solid #e5e7eb;
