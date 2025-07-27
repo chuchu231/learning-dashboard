@@ -328,13 +328,13 @@ elif selected == "Learning Performance":
             transform: translateY(-4px);
         }
         .metric-label {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 500;
             color: #64748b;
             margin-bottom: 0.5rem;
         }
         .metric-value {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
         }
         .metric-value.avg-value {
