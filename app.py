@@ -234,7 +234,8 @@ single_menu_style = {
     },
     "active_menu": {
         "color": "#06402B",
-        "background_color": "#66BB6A",  # Xanh lá vừa active
+        "background_color": "#66BB6A",
+        "font-weight": "bold" ,
     }
 }
 
@@ -248,6 +249,7 @@ submenu_style = {
     "active_submenu": {
         "color": "#06402B",
         "background_color": "#66BB6A",
+        "font-weight": "bold",
     }
 }
 
