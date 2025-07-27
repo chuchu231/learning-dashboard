@@ -681,7 +681,7 @@ elif selected == "Learning Behavior":
             margin-bottom: 0.5rem;
         }
         .metric-value {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
         }
         .metric-value.avg-value {
