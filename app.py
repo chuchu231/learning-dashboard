@@ -65,25 +65,44 @@ st.markdown("""
 <style>
     /* Sidebar màu xanh lá vừa */
     [data-testid="stSidebar"] {
-        background-color: #A5D6A7 !important;  
+        background-color: #A5D6A7 !important;
+        font-size: 16px !important;
     }
 
     /* Font & Text */
-    .stMarkdown, .stWrite {
-        font-family: 'Arial', sans-serif;
-        color: #1B5E20;  /* Xanh lá đậm */
+    html, body, .stMarkdown, .stWrite, .css-10trblm, .css-1v0mbdj, .css-1d391kg {
+        font-family: 'Arial', sans-serif !important;
+        color: #1B5E20;
+        font-size: 16px !important;
     }
 
-    h1, h2, h3, h4 {
-        color: #388E3C;  /* Xanh lá vừa */
+    h1 {
+        font-size: 36px !important;
+        color: #388E3C;
+    }
+
+    h2 {
+        font-size: 30px !important;
+        color: #388E3C;
+    }
+
+    h3 {
+        font-size: 24px !important;
+        color: #388E3C;
+    }
+
+    h4 {
+        font-size: 20px !important;
+        color: #388E3C;
     }
 
     a {
         color: #1B5E20;
+        font-size: 16px !important;
     }
 
     a:hover {
-        color: #2E7D32;  /* Xanh lá hover */
+        color: #2E7D32;
     }
 
     /* Thẻ card / box */
@@ -92,19 +111,22 @@ st.markdown("""
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.08);
         margin-bottom: 20px;
-        background-color: #E8F5E9;  /* Xanh pastel */
+        background-color: #E8F5E9;
+        font-size: 16px !important;
     }
 
     /* File uploader */
     [data-testid="stFileUploader"] {
-        background-color: #F1F8E9;  /* Nền xanh rất nhạt */
+        background-color: #F1F8E9;
         border-radius: 8px;
         padding: 10px;
+        font-size: 15px !important;
     }
 
     [data-testid="stFileUploader"] label {
         color: #1B5E20 !important;
         font-weight: 500;
+        font-size: 16px !important;
     }
 
     /* Data card */
@@ -114,36 +136,25 @@ st.markdown("""
         padding: 24px;
         margin-bottom: 24px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-    }
-
-    .data-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .data-left {
-        display: flex;
-        align-items: center;
-        gap: 16px;
+        font-size: 16px !important;
     }
 
     .data-title {
-        font-size: 20px;
+        font-size: 22px !important;
         font-weight: 600;
         color: #1B5E20;
         margin: 0;
     }
 
     .data-desc {
-        font-size: 15px;
+        font-size: 16px !important;
         color: #4B5563;
         margin: 4px 0 0 0;
     }
 
     /* Hover nút */
     button:hover {
-        background-color: #C8E6C9 !important;  /* Xanh nhạt hover */
+        background-color: #C8E6C9 !important;
         color: #1B5E20 !important;
     }
 
@@ -156,6 +167,7 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
 
 # Header configuration
 header = {
