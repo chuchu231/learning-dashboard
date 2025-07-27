@@ -755,7 +755,7 @@ elif selected == "Learning Behavior":
                         ]
                     }
                 ))
-                fig1.update_layout(margin=dict(l=20, r=20, t=40, b=20), height=200, plot_bgcolor="white")
+                fig1.update_layout(margin=dict(l=30, r=.0, t=40, b=20), height=300, plot_bgcolor="white")
                 st.plotly_chart(fig1, use_container_width=True)
 
 
@@ -774,9 +774,9 @@ elif selected == "Learning Behavior":
                 )])
                 fig2.update_layout(
                     margin=dict(l=20, r=20, t=40, b=20),
-                    height=200,
+                    height=300,
                    
-                    font=dict(size=12, color="#111827")
+                    font=dict(size=14, color="#111827")
                 )
                 st.plotly_chart(fig2, use_container_width=True)
     if not show_avg_time and not show_completion:
