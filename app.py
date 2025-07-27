@@ -490,7 +490,7 @@ elif selected == "Learning Performance":
 
             st.markdown("<h3>Pass/Fail Rate</h3>", unsafe_allow_html=True)
             fig_pass_fail.update_layout(
-                height=430,
+                height=470,
                 plot_bgcolor='white',
                 margin=dict(l=40, r=40, t=80, b=60),
                 font=dict(size=20, color='#1e293b')
