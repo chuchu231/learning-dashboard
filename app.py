@@ -675,30 +675,10 @@ elif selected == "Learning Behavior":
             transform: translateY(-4px);
         }
         .metric-label {
-            font-size: 1.1rem;
+            font-size: 1.55rem;
             font-weight: 500;
             color: #64748b;
-            margin-bottom: 0.5rem;
-        }
-        .metric-value {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        .metric-value.avg-value {
-            color: #F97316;  /* Orange */
-        }
-        .metric-value.max-value {
-            color: #10B981;  /* Green */
-        }
-        .metric-value.min-value {
-            color: #EF4444;  /* Red */
-        }
-        h1 { color: #111827; font-weight: 700; font-size: 3rem; text-align: center; margin-bottom: 2rem; }
-        h2 { color: #1F2937; font-weight: 600; font-size: 2rem; margin-bottom: 1rem; }
-        h3 { color: #1F2937; font-weight: 500; font-size: 1.5rem; margin-bottom: 0.75rem; }
-
-        .stRadio > div { flex-direction: row; gap: 1rem; }
-        .stMetric { font-size: 1rem; color: #111827; }
+            margin-2rem; color: #111827; }
         
         .divider {
             border-top: 1px solid #e5e7eb;
@@ -827,7 +807,7 @@ elif selected == "Learning Behavior":
             avg_count = df_sorted_max["Activity Count"].mean()
             st.markdown(
                 f"""
-                <div style='text-align:center; font-size:16px; margin-top:1px;'>
+                <div style='text-align:center; font-size:18px; margin-top:1px;'>
                     <b>Avg activity count:</b> {avg_count:.2f}
                 </div>
                 """,
@@ -849,7 +829,7 @@ elif selected == "Learning Behavior":
             st.plotly_chart(fig_min, use_container_width=True)
             avg_count_min = df_sorted_min["Activity Count"].mean()
             st.markdown(f"""
-                <div style='text-align:center; font-size:16px; margin-top:1px;'>
+                <div style='text-align:center; font-size:18px; margin-top:1px;'>
                         <b>Avg activity count:</b> {avg_count_min:.2f}
                 </div>
             """, unsafe_allow_html=True)
@@ -897,7 +877,7 @@ elif selected == "Learning Behavior":
             df_avg_question["Question ID"] = pd.to_numeric(df_avg_question["Question ID"], errors="coerce")
             df_avg_question = df_avg_question.sort_values("Question ID", ascending=True)
         
-            fig_rating = px.scatter(
+            fig_rating = px.bar(
                 df_avg_question,
                 x="Question ID",
                 y="AVG_Rating",
